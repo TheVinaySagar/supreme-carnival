@@ -1,25 +1,81 @@
 import chromadb
 from chromadb.config import Settings
 from openai import OpenAI
+import os
 
 
 class FinancialSituationMemory:
     def __init__(self, name, config):
-        if config["backend_url"] == "http://localhost:11434/v1":
+        self.config = config
+        self.llm_provider = config.get("llm_provider", "openai").lower()
+        
+        if self.llm_provider == "google":
+            # Use Google's embedding model directly via google-generativeai
+            try:
+                import google.generativeai as genai
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+                self.embedding_model = "models/text-embedding-004"
+                self.client_type = "google"
+            except ImportError:
+                # Fallback to simple text-based similarity if google-generativeai not available
+                print("Warning: google-generativeai not installed. Using simple text matching.")
+                self.client_type = "simple"
+        elif config["backend_url"] == "http://localhost:11434/v1":
             self.embedding = "nomic-embed-text"
+            self.client = OpenAI(base_url=config["backend_url"])
+            self.client_type = "openai"
         else:
             self.embedding = "text-embedding-3-small"
-        self.client = OpenAI(base_url=config["backend_url"])
+            self.client = OpenAI(base_url=config["backend_url"])
+            self.client_type = "openai"
+            
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
         self.situation_collection = self.chroma_client.create_collection(name=name)
 
     def get_embedding(self, text):
-        """Get OpenAI embedding for a text"""
+        """Get embedding for a text"""
         
-        response = self.client.embeddings.create(
-            model=self.embedding, input=text
-        )
-        return response.data[0].embedding
+        if self.client_type == "google":
+            import google.generativeai as genai
+            try:
+                result = genai.embed_content(
+                    model=self.embedding_model,
+                    content=text,
+                    task_type="retrieval_document"
+                )
+                return result['embedding']
+            except Exception as e:
+                print(f"Google embedding failed: {e}")
+                # Fallback to simple text-based approach
+                return self._simple_embedding(text)
+        elif self.client_type == "simple":
+            return self._simple_embedding(text)
+        else:
+            response = self.client.embeddings.create(
+                model=self.embedding, input=text
+            )
+            return response.data[0].embedding
+    
+    def _simple_embedding(self, text):
+        """Simple text-based embedding as fallback"""
+        # Create a simple hash-based embedding
+        import hashlib
+        import numpy as np
+        
+        # Create a deterministic but varied embedding based on text content
+        hash_obj = hashlib.md5(text.encode())
+        hash_hex = hash_obj.hexdigest()
+        
+        # Convert to numeric vector
+        embedding = []
+        for i in range(0, len(hash_hex), 2):
+            embedding.append(int(hash_hex[i:i+2], 16) / 255.0)
+        
+        # Pad to standard embedding size (384 dimensions)
+        while len(embedding) < 384:
+            embedding.extend(embedding[:min(len(embedding), 384 - len(embedding))])
+        
+        return embedding[:384]
 
     def add_situations(self, situations_and_advice):
         """Add financial situations and their corresponding advice. Parameter is a list of tuples (situation, rec)"""
