@@ -11,6 +11,10 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 from typing import Dict, Any, List
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from tradingagents.default_config import DEFAULT_CONFIG
 from tradingagents.rl.rl_environment import TradingEnvironment

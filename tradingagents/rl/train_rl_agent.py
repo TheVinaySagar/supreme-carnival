@@ -10,6 +10,10 @@ import json
 from datetime import datetime, timedelta
 import numpy as np
 from typing import List, Dict, Any
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from tradingagents.default_config import DEFAULT_CONFIG
 from tradingagents.rl.rl_environment import TradingEnvironment
