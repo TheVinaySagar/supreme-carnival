@@ -24,3 +24,8 @@ rich
 questionary
 langchain_anthropic
 langchain-google-genai
+torch
+torchvision
+numpy
+scipy
+python-dotenv

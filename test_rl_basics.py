@@ -1,8 +1,8 @@
 # TradingAgents/test_rl_basics.py
 
 """
-Simple test script for RL components without full TradingAgents dependencies.
-This allows testing the embedding and RL systems independently.
+Test script for RL components.
+Tests the state encoder, DQN agent, and environment integration.
 """
 
 import os
@@ -12,90 +12,18 @@ sys.path.append(os.path.dirname(__file__))
 from tradingagents.default_config import DEFAULT_CONFIG
 
 
-def test_embedding_system():
-    """Test the embedding system with sample trading reports."""
-    
-    print("=== Testing Embedding System ===")
-    
-    # Clean up any existing collections
-    try:
-        import chromadb
-        from chromadb import Settings
-        
-        client = chromadb.Client(Settings(allow_reset=True))
-        try:
-            client.delete_collection("test_rl_encoder")
-            print("Cleaned up existing test collection")
-        except:
-            pass
-    except ImportError:
-        print("ChromaDB not available")
-        return
-    
-    # Test embedding functionality
-    try:
-        from tradingagents.agents.utils.memory import FinancialSituationMemory
-        
-        config = DEFAULT_CONFIG.copy()
-        config.update({
-            "llm_provider": "google",
-            "backend_url": "https://generativelanguage.googleapis.com/v1",
-        })
-        
-        # Initialize memory system with embeddings
-        memory = FinancialSituationMemory("test_rl_encoder", config)
-        
-        # Test embeddings with sample reports
-        bullish_report = """
-        AAPL shows strong technical indicators with RSI at 45, indicating room for growth.
-        The 50-day SMA is trending upward, and MACD shows bullish crossover.
-        Strong earnings report and positive sentiment suggest continued momentum.
-        """
-        
-        bearish_report = """
-        AAPL exhibits weakness with RSI at 75, indicating overbought conditions.
-        The 200-day SMA shows resistance, and MACD histogram is declining.
-        Concerns about market saturation and increased competition create headwinds.
-        """
-        
-        print("Getting embeddings for sample reports...")
-        bullish_embedding = memory.get_embedding(bullish_report)
-        bearish_embedding = memory.get_embedding(bearish_report)
-        
-        print(f"Bullish embedding shape: {len(bullish_embedding)}")
-        print(f"Bearish embedding shape: {len(bearish_embedding)}")
-        print(f"Bullish embedding (first 5): {bullish_embedding[:5]}")
-        print(f"Bearish embedding (first 5): {bearish_embedding[:5]}")
-        
-        # Calculate similarity
-        import numpy as np
-        def cosine_similarity(a, b):
-            return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
-        
-        similarity = cosine_similarity(bullish_embedding, bearish_embedding)
-        print(f"Cosine similarity between reports: {similarity:.3f}")
-        print(f"Distance: {1 - similarity:.3f}")
-        
-        print("✅ Embedding system working correctly!")
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error testing embedding system: {e}")
-        return False
-
-
 def test_state_encoder():
-    """Test the RL state encoder component."""
+    """Test the state encoder component."""
     
-    print("\n=== Testing RL State Encoder ===")
+    print("=== Testing State Encoder ===")
     
     try:
         from tradingagents.rl.state_encoder import TradingStateEncoder
         
         config = DEFAULT_CONFIG.copy()
         config.update({
-            "llm_provider": "google",
-            "backend_url": "https://generativelanguage.googleapis.com/v1",
+            "llm_provider": "openai",
+            "backend_url": "https://api.openai.com/v1",
         })
         
         # Initialize state encoder
@@ -106,7 +34,7 @@ def test_state_encoder():
         mock_state = {
             "market_report": "Strong bullish momentum with RSI at 45 and positive sentiment.",
             "fundamentals_report": "Solid earnings growth and strong revenue trends.",
-            "social_report": "Positive social media sentiment and increased mentions.",
+            "sentiment_report": "Positive social media sentiment and increased mentions.",
             "news_report": "Breaking news about product launch and partnership deals.",
             "market_data": {
                 "price": 150.0,
@@ -117,10 +45,24 @@ def test_state_encoder():
             },
             "portfolio_state": {
                 "cash": 10000.0,
-                "holdings": {"AAPL": 100},
-                "total_value": 25000.0
-            }
+                "holdings": 0,
+                "total_value": 10000.0,
+                "unrealized_pnl_pct": 0.0,
+                "total_return_pct": 0.0
+            },
+            "trade_date": "2024-01-15"
         }
+        
+        print("Testing embedding generation...")
+        market_emb = state_encoder.get_embedding(mock_state["market_report"])
+        fund_emb = state_encoder.get_embedding(mock_state["fundamentals_report"])
+        
+        print(f"Market embedding shape: {len(market_emb)}")
+        print(f"Fundamentals embedding shape: {len(fund_emb)}")
+        print(f"Market embedding (first 5): {market_emb[:5]}")
+        
+        print("\nEncoding complete trading state to RL vector...")
+        rl_state = state_encoder.encode_state(mock_state)
         
         print("Encoding trading state to RL vector...")
         rl_state = state_encoder.encode_state(mock_state)
@@ -129,18 +71,27 @@ def test_state_encoder():
         print(f"RL state vector (first 10): {rl_state[:10]}")
         print(f"RL state vector dtype: {rl_state.dtype}")
         
-        # Test reward calculation
-        print("Testing reward calculation...")
-        reward = state_encoder.calculate_reward(
-            action=1,  # BUY
-            current_price=150.0,
-            future_price=155.0,
-            expert_decision=1,  # BUY
-            portfolio_change=0.05
-        )
-        print(f"Sample reward: {reward:.3f}")
+        # Test reward calculation with RewardCalculator
+        print("\nTesting reward calculation...")
+        from tradingagents.rl.reward_calculator import RewardCalculator
         
-        print("✅ State encoder working correctly!")
+        reward_calc = RewardCalculator()
+        reward_info = reward_calc.calculate_total_reward(
+            portfolio_value_before=10000.0,
+            portfolio_value_after=10500.0,  # 5% gain
+            rl_action=2,  # BUY
+            llm_action=2,  # BUY (agreement)
+            prev_action=1,  # HOLD
+            episode_step=10,
+            max_steps=100
+        )
+        print(f"Sample reward breakdown:")
+        print(f"  Total: {reward_info['total']:.3f}")
+        print(f"  Profit: {reward_info['profit']:.3f}")
+        print(f"  Risk: {reward_info['risk']:.3f}")
+        print(f"  Alignment: {reward_info['alignment']:.3f}")
+        
+        print("\n✅ State encoder working correctly!")
         return True
         
     except Exception as e:
@@ -217,9 +168,6 @@ def main():
     
     results = []
     
-    # Test embedding system
-    results.append(test_embedding_system())
-    
     # Test state encoder
     results.append(test_state_encoder())
     
@@ -231,7 +179,7 @@ def main():
     print("Test Summary:")
     print("=" * 60)
     
-    test_names = ["Embedding System", "State Encoder", "RL Components"]
+    test_names = ["State Encoder", "RL Components"]
     for i, (name, result) in enumerate(zip(test_names, results)):
         status = "✅ PASS" if result else "❌ FAIL"
         print(f"{name}: {status}")

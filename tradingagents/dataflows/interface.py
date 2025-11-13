@@ -512,13 +512,35 @@ def get_stock_stats_indicators_window(
     before = curr_date - relativedelta(days=look_back_days)
 
     if not online:
-        # read from YFin data
-        data = pd.read_csv(
-            os.path.join(
+        # Try to read from data cache first, then fall back to data_dir
+        from .config import get_config
+        config = get_config()
+        data_cache_dir = config.get("data_cache_dir", "./tradingagents/dataflows/data_cache")
+        
+        # Try to find any cached file for this symbol
+        data_file = None
+        if os.path.exists(data_cache_dir):
+            for filename in os.listdir(data_cache_dir):
+                if filename.startswith(f"{symbol}-YFin-data-") and filename.endswith(".csv"):
+                    data_file = os.path.join(data_cache_dir, filename)
+                    break
+        
+        # Fall back to old path structure if cache not found
+        if data_file is None:
+            data_file = os.path.join(
                 DATA_DIR,
                 f"market_data/price_data/{symbol}-YFin-data-2015-01-01-2025-03-25.csv",
             )
-        )
+        
+        if not os.path.exists(data_file):
+            # If file doesn't exist, fetch from yfinance
+            ticker_obj = yf.Ticker(symbol)
+            data = ticker_obj.history(start="2015-01-01", end="2025-12-31")
+            data = data.reset_index()
+            data["Date"] = data["Date"].astype(str)
+        else:
+            data = pd.read_csv(data_file)
+        
         data["Date"] = pd.to_datetime(data["Date"], utc=True)
         dates_in_df = data["Date"].astype(str).str[:10]
 
@@ -594,13 +616,34 @@ def get_YFin_data_window(
     before = date_obj - relativedelta(days=look_back_days)
     start_date = before.strftime("%Y-%m-%d")
 
-    # read in data
-    data = pd.read_csv(
-        os.path.join(
+    # Try to read from data cache first, then fall back to data_dir
+    from .config import get_config
+    config = get_config()
+    data_cache_dir = config.get("data_cache_dir", "./tradingagents/dataflows/data_cache")
+    
+    # Try to find any cached file for this symbol
+    data_file = None
+    if os.path.exists(data_cache_dir):
+        for filename in os.listdir(data_cache_dir):
+            if filename.startswith(f"{symbol}-YFin-data-") and filename.endswith(".csv"):
+                data_file = os.path.join(data_cache_dir, filename)
+                break
+    
+    # Fall back to old path structure if cache not found
+    if data_file is None:
+        data_file = os.path.join(
             DATA_DIR,
             f"market_data/price_data/{symbol}-YFin-data-2015-01-01-2025-03-25.csv",
         )
-    )
+    
+    if not os.path.exists(data_file):
+        # If file doesn't exist, fetch from yfinance
+        ticker_obj = yf.Ticker(symbol)
+        data = ticker_obj.history(start="2015-01-01", end="2025-12-31")
+        data = data.reset_index()
+        data["Date"] = data["Date"].astype(str)
+    else:
+        data = pd.read_csv(data_file)
 
     # Extract just the date part for comparison
     data["DateOnly"] = data["Date"].str[:10]
@@ -672,18 +715,34 @@ def get_YFin_data(
     start_date: Annotated[str, "Start date in yyyy-mm-dd format"],
     end_date: Annotated[str, "End date in yyyy-mm-dd format"],
 ) -> str:
-    # read in data
-    data = pd.read_csv(
-        os.path.join(
+    # Try to read from data cache first, then fall back to data_dir
+    from .config import get_config
+    config = get_config()
+    data_cache_dir = config.get("data_cache_dir", "./tradingagents/dataflows/data_cache")
+    
+    # Try to find any cached file for this symbol
+    data_file = None
+    if os.path.exists(data_cache_dir):
+        for filename in os.listdir(data_cache_dir):
+            if filename.startswith(f"{symbol}-YFin-data-") and filename.endswith(".csv"):
+                data_file = os.path.join(data_cache_dir, filename)
+                break
+    
+    # Fall back to old path structure if cache not found
+    if data_file is None:
+        data_file = os.path.join(
             DATA_DIR,
             f"market_data/price_data/{symbol}-YFin-data-2015-01-01-2025-03-25.csv",
         )
-    )
-
-    if end_date > "2025-03-25":
-        raise Exception(
-            f"Get_YFin_Data: {end_date} is outside of the data range of 2015-01-01 to 2025-03-25"
-        )
+    
+    if not os.path.exists(data_file):
+        # If file doesn't exist, fetch from yfinance
+        ticker_obj = yf.Ticker(symbol)
+        data = ticker_obj.history(start=start_date, end=end_date)
+        data = data.reset_index()
+        data["Date"] = data["Date"].astype(str)
+    else:
+        data = pd.read_csv(data_file)
 
     # Extract just the date part for comparison
     data["DateOnly"] = data["Date"].str[:10]
