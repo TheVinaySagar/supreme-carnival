@@ -71,7 +71,7 @@ class TradingEnvironment:
         self.trading_graph = None
         if self.use_llm_features:
             self.trading_graph = TradingAgentsGraph(
-                selected_analysts=["market"],  # Use only market analyst for speed
+                selected_analysts=["market", "news", "fundamentals"],  # All 4 analysts
                 debug=False,
                 config=self.config
             )
@@ -80,7 +80,12 @@ class TradingEnvironment:
         
         # Load historical price data
         self.price_data = self._load_price_data()
-        self.trading_dates = list(self.price_data.keys())
+        all_dates = list(self.price_data.keys())
+        
+        # Sample weekly (every 5 trading days) for more efficient training
+        self.trading_dates = all_dates[::5]  # Take every 5th day
+        
+        print(f"Weekly sampling: {len(all_dates)} days → {len(self.trading_dates)} trading periods")
         
         # Episode state
         self.current_step = 0
@@ -96,7 +101,8 @@ class TradingEnvironment:
         self.done = False
         
         print(f"Environment initialized: {ticker} from {start_date} to {end_date}")
-        print(f"Trading days available: {len(self.trading_dates)}")
+        print(f"Trading frequency: WEEKLY (every 5 trading days)")
+        print(f"Trading periods: {len(self.trading_dates)} (~{len(self.trading_dates)/52:.1f} years)")
         print(f"State dimension: {self.state_encoder.get_state_dim()}")
     
     def _load_price_data(self) -> Dict[str, Dict[str, float]]:
