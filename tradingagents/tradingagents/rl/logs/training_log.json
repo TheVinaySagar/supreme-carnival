@@ -1,900 +1,180 @@
 [
   {
     "episode": 1,
-    "timestamp": "2025-11-09T19:55:43.411730",
-    "total_return_pct": 145.27064682006835,
-    "final_portfolio_value": 24527.064682006836,
-    "total_reward": -482.74498786876967,
-    "avg_reward": -0.479865793110109,
+    "timestamp": "2025-11-16T15:36:08.008222",
+    "total_return_pct": 0.6071649169921876,
+    "final_portfolio_value": 10060.716491699219,
+    "total_reward": -3.7569626789282493,
+    "avg_reward": -0.17890298471086902,
     "actions": {
-      "SELL": 193,
-      "HOLD": 419,
-      "BUY": 394
+      "SELL": 7,
+      "HOLD": 5,
+      "BUY": 9
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.8829685585315411,
+    "epsilon": 1.0,
+    "avg_loss": 0.0,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 2,
-    "timestamp": "2025-11-09T19:55:45.462123",
-    "total_return_pct": -11.089340744018553,
-    "final_portfolio_value": 8891.065925598145,
-    "total_reward": -88.84770314402887,
-    "avg_reward": -0.08831779636583387,
+    "timestamp": "2025-11-16T15:36:19.279686",
+    "total_return_pct": 6.141402282714844,
+    "final_portfolio_value": 10614.140228271484,
+    "total_reward": 0.5699442314733391,
+    "avg_reward": 0.02714020149873043,
     "actions": {
-      "SELL": 25,
-      "HOLD": 974,
-      "BUY": 7
+      "SELL": 5,
+      "HOLD": 6,
+      "BUY": 10
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.48021930096222915,
+    "epsilon": 0.946354579813443,
+    "avg_loss": 0.23015872592275793,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 3,
-    "timestamp": "2025-11-09T19:55:47.451312",
-    "total_return_pct": 0.4354535675048828,
-    "final_portfolio_value": 10043.545356750488,
-    "total_reward": -10.938794018836191,
-    "avg_reward": -0.010873552702620469,
+    "timestamp": "2025-11-16T15:36:31.875101",
+    "total_return_pct": 3.1409764099121094,
+    "final_portfolio_value": 10314.097640991211,
+    "total_reward": -3.3642715561043977,
+    "avg_reward": -0.16020340743354275,
     "actions": {
-      "SELL": 110,
-      "HOLD": 893,
-      "BUY": 3
+      "SELL": 9,
+      "HOLD": 6,
+      "BUY": 6
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.2962272851218731,
+    "epsilon": 0.851801859600347,
+    "avg_loss": 0.2302630522421428,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 4,
-    "timestamp": "2025-11-09T19:55:49.518762",
-    "total_return_pct": 0.0,
-    "final_portfolio_value": 10000.0,
-    "total_reward": -3.2000000000000015,
-    "avg_reward": -0.0031809145129224666,
+    "timestamp": "2025-11-16T15:36:43.652233",
+    "total_return_pct": 4.274356689453125,
+    "final_portfolio_value": 10427.435668945312,
+    "total_reward": -0.20819372970362732,
+    "avg_reward": -0.009913987128744159,
     "actions": {
-      "SELL": 34,
-      "HOLD": 972,
-      "BUY": 0
+      "SELL": 4,
+      "HOLD": 11,
+      "BUY": 6
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.20728218245133018,
+    "epsilon": 0.7666961448653229,
+    "avg_loss": 0.19623424183754695,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 5,
-    "timestamp": "2025-11-09T19:55:51.711527",
-    "total_return_pct": -1.3473336791992188,
-    "final_portfolio_value": 9865.266632080078,
-    "total_reward": -12.505843603884582,
-    "avg_reward": -0.012431256067479704,
+    "timestamp": "2025-11-16T15:36:54.129174",
+    "total_return_pct": 1.7522706604003906,
+    "final_portfolio_value": 10175.227066040039,
+    "total_reward": -3.446724230725163,
+    "avg_reward": -0.16412972527262681,
     "actions": {
-      "SELL": 20,
-      "HOLD": 977,
-      "BUY": 9
+      "SELL": 5,
+      "HOLD": 8,
+      "BUY": 8
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.16126836409559012,
+    "epsilon": 0.6900935609921609,
+    "avg_loss": 0.21100941655181704,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 6,
-    "timestamp": "2025-11-09T19:55:53.788693",
-    "total_return_pct": 0.27697418212890623,
-    "final_portfolio_value": 10027.69741821289,
-    "total_reward": -8.989290950840791,
-    "avg_reward": -0.00893567688950377,
+    "timestamp": "2025-11-16T15:37:06.484367",
+    "total_return_pct": 0.4265681457519531,
+    "final_portfolio_value": 10042.656814575195,
+    "total_reward": -2.879584618399785,
+    "avg_reward": -0.13712307706665644,
     "actions": {
-      "SELL": 13,
-      "HOLD": 990,
+      "SELL": 7,
+      "HOLD": 11,
       "BUY": 3
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.13499830618420167,
+    "epsilon": 0.6211445383053219,
+    "avg_loss": 0.19823820463248662,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 7,
-    "timestamp": "2025-11-09T19:55:55.788071",
-    "total_return_pct": 5.55056900024414,
-    "final_portfolio_value": 10555.056900024414,
-    "total_reward": -25.38000806006932,
-    "avg_reward": -0.025228636242613636,
+    "timestamp": "2025-11-16T15:37:17.764601",
+    "total_return_pct": -3.1756199645996097,
+    "final_portfolio_value": 9682.438003540039,
+    "total_reward": -5.369549727274346,
+    "avg_reward": -0.25569284415592125,
     "actions": {
-      "SELL": 424,
-      "HOLD": 579,
-      "BUY": 3
+      "SELL": 8,
+      "HOLD": 8,
+      "BUY": 5
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.1103176073214941,
+    "epsilon": 0.5590843898207511,
+    "avg_loss": 0.17673935705707186,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 8,
-    "timestamp": "2025-11-09T19:55:57.907489",
-    "total_return_pct": 0.5980352783203126,
-    "final_portfolio_value": 10059.803527832031,
-    "total_reward": -1.4837299767092371,
-    "avg_reward": -0.0014748806925539136,
+    "timestamp": "2025-11-16T15:37:27.689388",
+    "total_return_pct": 3.331129455566406,
+    "final_portfolio_value": 10333.11294555664,
+    "total_reward": -0.093757593522068,
+    "avg_reward": -0.004464647310574667,
     "actions": {
-      "SELL": 11,
-      "HOLD": 993,
-      "BUY": 2
+      "SELL": 8,
+      "HOLD": 9,
+      "BUY": 4
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.10212811354742614,
+    "epsilon": 0.5032248303978422,
+    "avg_loss": 0.14930775477772668,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 9,
-    "timestamp": "2025-11-09T19:56:00.063130",
-    "total_return_pct": -1.1033598327636718,
-    "final_portfolio_value": 9889.664016723633,
-    "total_reward": -7.263359613951778,
-    "avg_reward": -0.007220039377685664,
+    "timestamp": "2025-11-16T15:37:38.232964",
+    "total_return_pct": 1.5449122619628906,
+    "final_portfolio_value": 10154.491226196289,
+    "total_reward": -1.6917342977458092,
+    "avg_reward": -0.08055877608313378,
     "actions": {
-      "SELL": 42,
-      "HOLD": 960,
-      "BUY": 4
+      "SELL": 10,
+      "HOLD": 5,
+      "BUY": 6
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.08677425052103666,
+    "epsilon": 0.4529463432347434,
+    "avg_loss": 0.14254841279415859,
     "tickers": [
       "AAPL"
     ]
   },
   {
     "episode": 10,
-    "timestamp": "2025-11-09T19:56:02.297248",
-    "total_return_pct": -2.452387390136719,
-    "final_portfolio_value": 9754.761260986328,
-    "total_reward": -17.310203714702162,
-    "avg_reward": -0.0172069619430439,
-    "actions": {
-      "SELL": 120,
-      "HOLD": 882,
-      "BUY": 4
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.0822874194725785,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 11,
-    "timestamp": "2025-11-09T19:56:04.700801",
-    "total_return_pct": 20.538564376831054,
-    "final_portfolio_value": 12053.856437683105,
-    "total_reward": -291.804676367509,
-    "avg_reward": -0.2900642906237664,
-    "actions": {
-      "SELL": 257,
-      "HOLD": 543,
-      "BUY": 206
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.052837878200709246,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 12,
-    "timestamp": "2025-11-09T19:56:06.876802",
-    "total_return_pct": -4.140966873168946,
-    "final_portfolio_value": 9585.903312683105,
-    "total_reward": -19.150952487082233,
-    "avg_reward": -0.019036732094515143,
-    "actions": {
-      "SELL": 144,
-      "HOLD": 859,
-      "BUY": 3
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.040886126066639994,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 13,
-    "timestamp": "2025-11-09T19:56:08.913072",
-    "total_return_pct": -1.5438279724121093,
-    "final_portfolio_value": 9845.617202758789,
-    "total_reward": -12.260949289107561,
-    "avg_reward": -0.012187822354977696,
-    "actions": {
-      "SELL": 38,
-      "HOLD": 961,
-      "BUY": 7
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.038903758182536594,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 14,
-    "timestamp": "2025-11-09T19:56:10.965781",
-    "total_return_pct": 0.052962646484375,
-    "final_portfolio_value": 10005.296264648438,
-    "total_reward": -131.09924167730543,
-    "avg_reward": -0.13031733765139705,
-    "actions": {
-      "SELL": 9,
-      "HOLD": 935,
-      "BUY": 62
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.05315622926370179,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 15,
-    "timestamp": "2025-11-09T19:56:13.012129",
-    "total_return_pct": 0.0,
-    "final_portfolio_value": 10000.0,
-    "total_reward": -0.30000000000000004,
-    "avg_reward": -0.00029821073558648114,
-    "actions": {
-      "SELL": 3,
-      "HOLD": 1003,
-      "BUY": 0
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.05288342297821612,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 16,
-    "timestamp": "2025-11-09T19:56:15.058026",
-    "total_return_pct": -4.224705657958984,
-    "final_portfolio_value": 9577.529434204102,
-    "total_reward": -61.362847646071955,
-    "avg_reward": -0.06099686644738763,
-    "actions": {
-      "SELL": 55,
-      "HOLD": 903,
-      "BUY": 48
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.053160486824929236,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 17,
-    "timestamp": "2025-11-09T19:56:17.092907",
-    "total_return_pct": 0.0,
-    "final_portfolio_value": 10000.0,
-    "total_reward": -0.4,
-    "avg_reward": -0.00039761431411530816,
-    "actions": {
-      "SELL": 4,
-      "HOLD": 1002,
-      "BUY": 0
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.05831941616942247,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 18,
-    "timestamp": "2025-11-09T19:56:19.098277",
-    "total_return_pct": 7.267324523925782,
-    "final_portfolio_value": 10726.732452392578,
-    "total_reward": -40.4754526293692,
-    "avg_reward": -0.0402340483393332,
-    "actions": {
-      "SELL": 248,
-      "HOLD": 712,
-      "BUY": 46
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.05932788234041466,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 19,
-    "timestamp": "2025-11-09T19:56:21.232584",
-    "total_return_pct": -14.691952133178713,
-    "final_portfolio_value": 8530.804786682129,
-    "total_reward": -52.08157302542194,
-    "avg_reward": -0.0517709473413737,
-    "actions": {
-      "SELL": 88,
-      "HOLD": 904,
-      "BUY": 14
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.06216567575777177,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 20,
-    "timestamp": "2025-11-09T19:56:23.254375",
-    "total_return_pct": 7.6588806152343745,
-    "final_portfolio_value": 10765.888061523438,
-    "total_reward": -50.74277392108336,
-    "avg_reward": -0.05044013312234927,
-    "actions": {
-      "SELL": 130,
-      "HOLD": 784,
-      "BUY": 92
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.06576952498451766,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 21,
-    "timestamp": "2025-11-09T19:56:25.334240",
-    "total_return_pct": 13.340480041503906,
-    "final_portfolio_value": 11334.04800415039,
-    "total_reward": -31.183102959590855,
-    "avg_reward": -0.030997120238161882,
-    "actions": {
-      "SELL": 174,
-      "HOLD": 784,
-      "BUY": 48
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.046872831792288294,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 22,
-    "timestamp": "2025-11-09T19:56:27.398008",
-    "total_return_pct": 4.914678802490234,
-    "final_portfolio_value": 10491.467880249023,
-    "total_reward": -19.989380149113238,
-    "avg_reward": -0.019870159193949542,
-    "actions": {
-      "SELL": 58,
-      "HOLD": 926,
-      "BUY": 22
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.03887245096721053,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 23,
-    "timestamp": "2025-11-09T19:56:29.421064",
-    "total_return_pct": -2.3356863403320314,
-    "final_portfolio_value": 9766.431365966797,
-    "total_reward": -6.75610261800448,
-    "avg_reward": -0.006715807771376222,
+    "timestamp": "2025-11-16T15:37:49.814632",
+    "total_return_pct": 1.223660430908203,
+    "final_portfolio_value": 10122.36604309082,
+    "total_reward": -1.4255286260638025,
+    "avg_reward": -0.06788231552684773,
     "actions": {
       "SELL": 13,
-      "HOLD": 990,
-      "BUY": 3
+      "HOLD": 1,
+      "BUY": 7
     },
-    "epsilon": 0.01,
-    "avg_loss": 0.0408983957430345,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 24,
-    "timestamp": "2025-11-09T19:56:31.479626",
-    "total_return_pct": -5.529437103271484,
-    "final_portfolio_value": 9447.056289672852,
-    "total_reward": -45.754616688553,
-    "avg_reward": -0.045481726330569586,
-    "actions": {
-      "SELL": 96,
-      "HOLD": 896,
-      "BUY": 14
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.030338250608859255,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 25,
-    "timestamp": "2025-11-09T19:56:33.477994",
-    "total_return_pct": -4.008448791503906,
-    "final_portfolio_value": 9599.15512084961,
-    "total_reward": -21.688242035522965,
-    "avg_reward": -0.021558888703303147,
-    "actions": {
-      "SELL": 49,
-      "HOLD": 949,
-      "BUY": 8
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.026526412105342376,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 26,
-    "timestamp": "2025-11-09T19:56:35.492736",
-    "total_return_pct": 20.693543128967285,
-    "final_portfolio_value": 12069.354312896729,
-    "total_reward": -110.25647695807707,
-    "avg_reward": -0.10959888365614023,
-    "actions": {
-      "SELL": 214,
-      "HOLD": 654,
-      "BUY": 138
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.039228048051925465,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 27,
-    "timestamp": "2025-11-09T19:56:37.560400",
-    "total_return_pct": -7.572053680419922,
-    "final_portfolio_value": 9242.794631958008,
-    "total_reward": -25.17094947723373,
-    "avg_reward": -0.025020824530053408,
-    "actions": {
-      "SELL": 39,
-      "HOLD": 962,
-      "BUY": 5
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.041166821655840014,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 28,
-    "timestamp": "2025-11-09T19:56:39.638329",
-    "total_return_pct": -8.002629623413087,
-    "final_portfolio_value": 9199.737037658691,
-    "total_reward": -24.93665039136133,
-    "avg_reward": -0.024787922854235915,
-    "actions": {
-      "SELL": 18,
-      "HOLD": 980,
-      "BUY": 8
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.03805973728736594,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 29,
-    "timestamp": "2025-11-09T19:56:41.612554",
-    "total_return_pct": -1.5753482818603515,
-    "final_portfolio_value": 9842.465171813965,
-    "total_reward": -35.40121054625286,
-    "avg_reward": -0.035190070125499864,
-    "actions": {
-      "SELL": 14,
-      "HOLD": 976,
-      "BUY": 16
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.03998707697309496,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 30,
-    "timestamp": "2025-11-09T19:56:43.661672",
-    "total_return_pct": -2.5437588500976562,
-    "final_portfolio_value": 9745.624114990234,
-    "total_reward": -31.755153242987454,
-    "avg_reward": -0.031565758690842396,
-    "actions": {
-      "SELL": 27,
-      "HOLD": 965,
-      "BUY": 14
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.03856120622026221,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 31,
-    "timestamp": "2025-11-09T19:56:45.771049",
-    "total_return_pct": -2.1308222961425782,
-    "final_portfolio_value": 9786.917770385742,
-    "total_reward": -17.785641046947855,
-    "avg_reward": -0.017679563664958108,
-    "actions": {
-      "SELL": 14,
-      "HOLD": 979,
-      "BUY": 13
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.033647384528160025,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 32,
-    "timestamp": "2025-11-09T19:56:47.813020",
-    "total_return_pct": 15.501062622070313,
-    "final_portfolio_value": 11550.106262207031,
-    "total_reward": -23.775881213047917,
-    "avg_reward": -0.02363407675253272,
-    "actions": {
-      "SELL": 28,
-      "HOLD": 909,
-      "BUY": 69
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.03410586618826327,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 33,
-    "timestamp": "2025-11-09T19:56:49.885569",
-    "total_return_pct": -7.107457656860351,
-    "final_portfolio_value": 9289.254234313965,
-    "total_reward": -46.76319453082739,
-    "avg_reward": -0.046484288798039154,
-    "actions": {
-      "SELL": 23,
-      "HOLD": 967,
-      "BUY": 16
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.04122487880901372,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 34,
-    "timestamp": "2025-11-09T19:56:51.994094",
-    "total_return_pct": 7.990850296020508,
-    "final_portfolio_value": 10799.08502960205,
-    "total_reward": -44.08872550048024,
-    "avg_reward": -0.04382577087522886,
-    "actions": {
-      "SELL": 37,
-      "HOLD": 892,
-      "BUY": 77
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.039196287974517116,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 35,
-    "timestamp": "2025-11-09T19:56:54.133988",
-    "total_return_pct": -7.824707260131836,
-    "final_portfolio_value": 9217.529273986816,
-    "total_reward": -75.67751160471187,
-    "avg_reward": -0.07522615467665196,
-    "actions": {
-      "SELL": 46,
-      "HOLD": 916,
-      "BUY": 44
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.044541921150641726,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 36,
-    "timestamp": "2025-11-09T19:56:56.649512",
-    "total_return_pct": 12.001903228759765,
-    "final_portfolio_value": 11200.190322875977,
-    "total_reward": -37.307568948127106,
-    "avg_reward": -0.037085058596547815,
-    "actions": {
-      "SELL": 56,
-      "HOLD": 898,
-      "BUY": 52
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.036805158721412226,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 37,
-    "timestamp": "2025-11-09T19:56:58.905990",
-    "total_return_pct": 16.755110778808593,
-    "final_portfolio_value": 11675.51107788086,
-    "total_reward": -18.951867290031117,
-    "avg_reward": -0.018838834284325166,
-    "actions": {
-      "SELL": 37,
-      "HOLD": 926,
-      "BUY": 43
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.035269282400658054,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 38,
-    "timestamp": "2025-11-09T19:57:01.002303",
-    "total_return_pct": 13.825717163085937,
-    "final_portfolio_value": 11382.571716308594,
-    "total_reward": -32.175342161961275,
-    "avg_reward": -0.03198344151288397,
-    "actions": {
-      "SELL": 24,
-      "HOLD": 932,
-      "BUY": 50
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.039990626461965925,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 39,
-    "timestamp": "2025-11-09T19:57:03.070116",
-    "total_return_pct": -2.2284551239013672,
-    "final_portfolio_value": 9777.154487609863,
-    "total_reward": -95.9398728475347,
-    "avg_reward": -0.09536766684645596,
-    "actions": {
-      "SELL": 73,
-      "HOLD": 853,
-      "BUY": 80
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.04664260676898114,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 40,
-    "timestamp": "2025-11-09T19:57:05.144517",
-    "total_return_pct": 14.848348541259766,
-    "final_portfolio_value": 11484.834854125977,
-    "total_reward": -103.48655016388507,
-    "avg_reward": -0.10286933415893149,
-    "actions": {
-      "SELL": 57,
-      "HOLD": 806,
-      "BUY": 143
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.05886669507308976,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 41,
-    "timestamp": "2025-11-09T19:57:07.238794",
-    "total_return_pct": 9.904067306518554,
-    "final_portfolio_value": 10990.406730651855,
-    "total_reward": -134.41665570762382,
-    "avg_reward": -0.1336149659121509,
-    "actions": {
-      "SELL": 103,
-      "HOLD": 770,
-      "BUY": 133
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.07242704782726161,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 42,
-    "timestamp": "2025-11-09T19:57:09.302337",
-    "total_return_pct": 10.487314147949219,
-    "final_portfolio_value": 11048.731414794922,
-    "total_reward": -68.48029548643953,
-    "avg_reward": -0.06807186430063572,
-    "actions": {
-      "SELL": 62,
-      "HOLD": 889,
-      "BUY": 55
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.07904198046039539,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 43,
-    "timestamp": "2025-11-09T19:57:11.317809",
-    "total_return_pct": 20.921196212768557,
-    "final_portfolio_value": 12092.119621276855,
-    "total_reward": -107.79373062139275,
-    "avg_reward": -0.10715082566738843,
-    "actions": {
-      "SELL": 151,
-      "HOLD": 709,
-      "BUY": 146
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.08825465225314659,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 44,
-    "timestamp": "2025-11-09T19:57:13.418036",
-    "total_return_pct": 69.02924755096436,
-    "final_portfolio_value": 16902.924755096436,
-    "total_reward": -114.81964362446674,
-    "avg_reward": -0.11413483461676614,
-    "actions": {
-      "SELL": 120,
-      "HOLD": 669,
-      "BUY": 217
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.10956769629527868,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 45,
-    "timestamp": "2025-11-09T19:57:15.451440",
-    "total_return_pct": 78.00890113830566,
-    "final_portfolio_value": 17800.890113830566,
-    "total_reward": -177.75793696009544,
-    "avg_reward": -0.17669775045735134,
-    "actions": {
-      "SELL": 119,
-      "HOLD": 624,
-      "BUY": 263
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.13908167791952775,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 46,
-    "timestamp": "2025-11-09T19:57:17.545523",
-    "total_return_pct": 87.17141021728516,
-    "final_portfolio_value": 18717.141021728516,
-    "total_reward": -236.01115288808165,
-    "avg_reward": -0.23460353169789427,
-    "actions": {
-      "SELL": 127,
-      "HOLD": 590,
-      "BUY": 289
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.17940175786862525,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 47,
-    "timestamp": "2025-11-09T19:57:19.653755",
-    "total_return_pct": 95.16555355072022,
-    "final_portfolio_value": 19516.55535507202,
-    "total_reward": -177.03358569680304,
-    "avg_reward": -0.17597771938051993,
-    "actions": {
-      "SELL": 131,
-      "HOLD": 658,
-      "BUY": 217
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.210199280897485,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 48,
-    "timestamp": "2025-11-09T19:57:21.758051",
-    "total_return_pct": 38.29060447692871,
-    "final_portfolio_value": 13829.060447692871,
-    "total_reward": -182.1886765262352,
-    "avg_reward": -0.18110206414138688,
-    "actions": {
-      "SELL": 117,
-      "HOLD": 689,
-      "BUY": 200
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.252765600326995,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 49,
-    "timestamp": "2025-11-09T19:57:23.844456",
-    "total_return_pct": 59.1274736404419,
-    "final_portfolio_value": 15912.74736404419,
-    "total_reward": -199.2569223168026,
-    "avg_reward": -0.19806851124930674,
-    "actions": {
-      "SELL": 194,
-      "HOLD": 611,
-      "BUY": 201
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.27391158959367284,
-    "tickers": [
-      "AAPL"
-    ]
-  },
-  {
-    "episode": 50,
-    "timestamp": "2025-11-09T19:57:25.906813",
-    "total_return_pct": 44.57323883056641,
-    "final_portfolio_value": 14457.32388305664,
-    "total_reward": -187.14290582097544,
-    "avg_reward": -0.18602674534888214,
-    "actions": {
-      "SELL": 138,
-      "HOLD": 666,
-      "BUY": 202
-    },
-    "epsilon": 0.01,
-    "avg_loss": 0.2970797060646309,
+    "epsilon": 0.40769130904675194,
+    "avg_loss": 0.11673973855518159,
     "tickers": [
       "AAPL"
     ]

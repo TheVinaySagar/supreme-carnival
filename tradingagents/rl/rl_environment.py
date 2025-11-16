@@ -9,6 +9,8 @@ from typing import Dict, Any, Tuple, Optional, List
 from datetime import datetime, timedelta
 import pandas as pd
 import os
+import json
+import hashlib
 
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.rl.state_encoder import TradingStateEncoder
@@ -57,6 +59,14 @@ class TradingEnvironment:
         self.state_encoder = TradingStateEncoder(self.config)
         self.reward_calculator = RewardCalculator()
         
+        # LLM report cache (in-memory)
+        self.llm_cache = {}
+        self.cache_dir = os.path.join(
+            self.config.get("data_cache_dir", "./tradingagents/dataflows/data_cache"),
+            "llm_reports"
+        )
+        os.makedirs(self.cache_dir, exist_ok=True)
+        
         # Trading agents (only if using LLM features)
         self.trading_graph = None
         if self.use_llm_features:
@@ -65,6 +75,8 @@ class TradingEnvironment:
                 debug=False,
                 config=self.config
             )
+            # Load cached reports if available
+            self._load_llm_cache()
         
         # Load historical price data
         self.price_data = self._load_price_data()
@@ -199,9 +211,62 @@ class TradingEnvironment:
         
         return data
     
+    def _get_cache_key(self, date_str: str) -> str:
+        """
+        Generate unique cache key for ticker + date combination.
+        
+        Args:
+            date_str: Trading date
+            
+        Returns:
+            Cache key string
+        """
+        key_str = f"{self.ticker}_{date_str}"
+        return hashlib.md5(key_str.encode()).hexdigest()
+    
+    def _load_llm_cache(self):
+        """Load cached LLM reports from disk if available."""
+        cache_file = os.path.join(
+            self.cache_dir,
+            f"{self.ticker}_{self.start_date.strftime('%Y-%m-%d')}_{self.end_date.strftime('%Y-%m-%d')}.json"
+        )
+        
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, 'r') as f:
+                    self.llm_cache = json.load(f)
+                print(f"✓ Loaded {len(self.llm_cache)} cached LLM reports from {cache_file}")
+            except Exception as e:
+                print(f"Warning: Failed to load LLM cache: {e}")
+                self.llm_cache = {}
+        else:
+            print(f"No cached LLM reports found. Will generate fresh reports.")
+    
+    def _save_llm_cache(self):
+        """Save LLM reports cache to disk."""
+        if not self.llm_cache:
+            return
+        
+        cache_file = os.path.join(
+            self.cache_dir,
+            f"{self.ticker}_{self.start_date.strftime('%Y-%m-%d')}_{self.end_date.strftime('%Y-%m-%d')}.json"
+        )
+        
+        try:
+            with open(cache_file, 'w') as f:
+                json.dump(self.llm_cache, f, indent=2)
+            print(f"✓ Saved {len(self.llm_cache)} LLM reports to cache: {cache_file}")
+        except Exception as e:
+            print(f"Warning: Failed to save LLM cache: {e}")
+    
     def _get_llm_reports(self, date_str: str) -> Dict[str, str]:
         """
-        Generate LLM reports for the current date.
+        Get LLM reports for the current date (cached or freshly generated).
+        
+        This method implements intelligent caching:
+        - First checks in-memory cache
+        - If not found, generates reports via trading_graph
+        - Saves to cache for reuse in future episodes
         
         Args:
             date_str: Trading date
@@ -217,27 +282,43 @@ class TradingEnvironment:
                 "fundamentals_report": ""
             }
         
+        # Check cache first
+        cache_key = self._get_cache_key(date_str)
+        if cache_key in self.llm_cache:
+            return self.llm_cache[cache_key]
+        
+        # Generate fresh reports
+        print(f"⚡ Generating LLM reports for {self.ticker} on {date_str}...")
         try:
             # Run trading graph to get LLM analysis
-            # Use silent mode to avoid excessive output
             _, _ = self.trading_graph.propagate(self.ticker, date_str)
             
             # Extract reports from final state
             state = self.trading_graph.curr_state
-            return {
+            reports = {
                 "market_report": state.get("market_report", ""),
                 "sentiment_report": state.get("sentiment_report", ""),
                 "news_report": state.get("news_report", ""),
                 "fundamentals_report": state.get("fundamentals_report", "")
             }
+            
+            # Cache the reports
+            self.llm_cache[cache_key] = reports
+            print(f"✓ Cached LLM reports for {date_str}")
+            
+            return reports
+            
         except Exception as e:
             print(f"Warning: Failed to generate LLM reports: {e}")
-            return {
+            empty_reports = {
                 "market_report": "",
                 "sentiment_report": "",
                 "news_report": "",
                 "fundamentals_report": ""
             }
+            # Cache empty reports to avoid retrying
+            self.llm_cache[cache_key] = empty_reports
+            return empty_reports
     
     def _execute_action(self, action: int, current_price: float):
         """
@@ -273,9 +354,16 @@ class TradingEnvironment:
         """
         Reset environment for new episode.
         
+        Saves LLM cache to disk after first episode so subsequent
+        episodes can reuse cached reports.
+        
         Returns:
             Initial state observation
         """
+        # Save cache after episode completes (if we have any cached data)
+        if self.use_llm_features and self.llm_cache:
+            self._save_llm_cache()
+        
         self.current_step = 0
         self.current_date_idx = 0
         self.portfolio = {
@@ -392,3 +480,30 @@ class TradingEnvironment:
     def get_action_dim(self) -> int:
         """Return action dimension."""
         return 3  # SELL, HOLD, BUY
+    
+    def get_cache_stats(self) -> Dict[str, Any]:
+        """
+        Get statistics about LLM report caching.
+        
+        Returns:
+            Dictionary with cache statistics
+        """
+        total_dates = len(self.trading_dates)
+        cached_dates = len(self.llm_cache)
+        
+        return {
+            "total_trading_dates": total_dates,
+            "cached_reports": cached_dates,
+            "cache_coverage_pct": (cached_dates / total_dates * 100) if total_dates > 0 else 0,
+            "cache_enabled": self.use_llm_features
+        }
+    
+    def close(self):
+        """
+        Clean up resources and save cache.
+        
+        Call this when done with the environment to ensure cache is saved.
+        """
+        if self.use_llm_features and self.llm_cache:
+            self._save_llm_cache()
+            print(f"Environment closed. Cache saved with {len(self.llm_cache)} reports.")

@@ -258,75 +258,103 @@ def main():
     print("\nStarting training...")
     print("="*60)
     
-    # Training loop
-    for episode in range(1, args.num_episodes + 1):
-        print(f"\nEpisode {episode}/{args.num_episodes}")
-        
-        # Train on each ticker
-        all_metrics = []
-        for ticker in args.tickers:
-            print(f"  Training on {ticker}...")
-            
-            # Create environment for this ticker
-            if ticker != env.ticker:
-                env = TradingEnvironment(
-                    ticker=ticker,
-                    start_date=args.start_date,
-                    end_date=args.end_date,
-                    initial_capital=args.initial_capital,
-                    config=config,
-                    use_llm_features=args.use_llm_features
-                )
-            
-            # Train episode
-            metrics = train_episode(env, agent, replay_buffer, args.batch_size)
-            metrics["ticker"] = ticker
-            all_metrics.append(metrics)
-            
-            print(f"    Return: {metrics['total_return_pct']:.2f}%, "
-                  f"Reward: {metrics['total_reward']:.2f}, "
-                  f"Epsilon: {metrics['epsilon']:.4f}")
-        
-        # Aggregate metrics
-        avg_metrics = {
-            "total_return_pct": np.mean([m["total_return_pct"] for m in all_metrics]),
-            "final_portfolio_value": np.mean([m["final_portfolio_value"] for m in all_metrics]),
-            "total_reward": np.mean([m["total_reward"] for m in all_metrics]),
-            "avg_reward": np.mean([m["avg_reward"] for m in all_metrics]),
-            "actions": {
-                "SELL": sum(m["actions"]["SELL"] for m in all_metrics),
-                "HOLD": sum(m["actions"]["HOLD"] for m in all_metrics),
-                "BUY": sum(m["actions"]["BUY"] for m in all_metrics),
-            },
-            "epsilon": agent.epsilon,
-            "avg_loss": np.mean([m["avg_loss"] for m in all_metrics]),
-            "tickers": args.tickers
-        }
-        
-        # Log and print
-        logger.log_episode(episode, avg_metrics)
-        logger.print_episode_summary(episode, avg_metrics)
-        
-        # Save checkpoint
-        if episode % args.checkpoint_freq == 0:
-            checkpoint_path = os.path.join(
-                model_dir,
-                f"{args.model_name}_episode_{episode}.pt"
-            )
-            agent.save(checkpoint_path)
-            print(f"Checkpoint saved to {checkpoint_path}")
+    # Show initial cache statistics
+    if args.use_llm_features:
+        cache_stats = env.get_cache_stats()
+        print(f"\nLLM Cache Status:")
+        print(f"  - Cached Reports: {cache_stats['cached_reports']}/{cache_stats['total_trading_dates']}")
+        print(f"  - Coverage: {cache_stats['cache_coverage_pct']:.1f}%")
+        if cache_stats['cached_reports'] > 0:
+            print(f"  ✓ Using cached reports - subsequent episodes will be 100x faster!")
+        else:
+            print(f"  ⚠ No cache - first episode will generate reports (slower)")
     
-    # Save final model
-    final_model_path = os.path.join(
-        config["project_dir"],
-        "tradingagents/rl/models",
-        f"{args.model_name}_final.pt"
-    )
-    agent.save(final_model_path)
-    print(f"\n{'='*60}")
-    print(f"Training complete! Final model saved to {final_model_path}")
-    print(f"Training logs saved to {logger.log_file}")
-    print(f"{'='*60}")
+    # Training loop
+    try:
+        for episode in range(1, args.num_episodes + 1):
+            print(f"\nEpisode {episode}/{args.num_episodes}")
+            
+            # Train on each ticker
+            all_metrics = []
+            for ticker in args.tickers:
+                print(f"  Training on {ticker}...")
+                
+                # Create environment for this ticker
+                if ticker != env.ticker:
+                    old_env = env
+                    env = TradingEnvironment(
+                        ticker=ticker,
+                        start_date=args.start_date,
+                        end_date=args.end_date,
+                        initial_capital=args.initial_capital,
+                        config=config,
+                        use_llm_features=args.use_llm_features
+                    )
+                    old_env.close()
+                
+                # Train episode
+                metrics = train_episode(env, agent, replay_buffer, args.batch_size)
+                metrics["ticker"] = ticker
+                all_metrics.append(metrics)
+                
+                print(f"    Return: {metrics['total_return_pct']:.2f}%, "
+                      f"Reward: {metrics['total_reward']:.2f}, "
+                      f"Epsilon: {metrics['epsilon']:.4f}")
+                
+                # Show cache stats after first episode
+                if episode == 1 and args.use_llm_features:
+                    cache_stats = env.get_cache_stats()
+                    print(f"    Cache: {cache_stats['cached_reports']} reports cached "
+                          f"({cache_stats['cache_coverage_pct']:.1f}% coverage)")
+            
+            # Aggregate metrics
+            avg_metrics = {
+                "total_return_pct": np.mean([m["total_return_pct"] for m in all_metrics]),
+                "final_portfolio_value": np.mean([m["final_portfolio_value"] for m in all_metrics]),
+                "total_reward": np.mean([m["total_reward"] for m in all_metrics]),
+                "avg_reward": np.mean([m["avg_reward"] for m in all_metrics]),
+                "actions": {
+                    "SELL": sum(m["actions"]["SELL"] for m in all_metrics),
+                    "HOLD": sum(m["actions"]["HOLD"] for m in all_metrics),
+                    "BUY": sum(m["actions"]["BUY"] for m in all_metrics),
+                },
+                "epsilon": agent.epsilon,
+                "avg_loss": np.mean([m["avg_loss"] for m in all_metrics]),
+                "tickers": args.tickers
+            }
+            
+            # Log and print
+            logger.log_episode(episode, avg_metrics)
+            logger.print_episode_summary(episode, avg_metrics)
+            
+            # Save checkpoint
+            if episode % args.checkpoint_freq == 0:
+                checkpoint_path = os.path.join(
+                    model_dir,
+                    f"{args.model_name}_episode_{episode}.pt"
+                )
+                agent.save(checkpoint_path)
+                print(f"Checkpoint saved to {checkpoint_path}")
+        
+        # Save final model (after all episodes complete)
+        final_model_path = os.path.join(
+            config["project_dir"],
+            "tradingagents/rl/models",
+            f"{args.model_name}_final.pt"
+        )
+        agent.save(final_model_path)
+        print(f"\n{'='*60}")
+        print(f"Training complete! Final model saved to {final_model_path}")
+        print(f"Training logs saved to {logger.log_file}")
+        print(f"{'='*60}")
+        
+    finally:
+        # Always close environment to save cache
+        print("\nClosing environment and saving cache...")
+        env.close()
+        if args.use_llm_features:
+            cache_stats = env.get_cache_stats()
+            print(f"Final cache: {cache_stats['cached_reports']} reports saved")
 
 
 if __name__ == "__main__":
