@@ -216,7 +216,7 @@ def main():
         "deep_think_llm": "gpt-4o-mini",
         "quick_think_llm": "gpt-4o-mini",
         "max_debate_rounds": 1,
-        "online_tools": False,  # Use cached data for speed
+        "online_tools": True,  # Use cached data for speed
         "rl_learning_rate": 1e-4,
         "rl_gamma": 0.95,
         "rl_epsilon_start": 1.0,

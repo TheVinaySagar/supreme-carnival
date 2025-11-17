@@ -71,7 +71,7 @@ class TradingEnvironment:
         self.trading_graph = None
         if self.use_llm_features:
             self.trading_graph = TradingAgentsGraph(
-                selected_analysts=["market", "news", "fundamentals"],  # All 4 analysts
+                selected_analysts=["market", "news", "fundamentals", "social"],  # All 4 analysts
                 debug=False,
                 config=self.config
             )
