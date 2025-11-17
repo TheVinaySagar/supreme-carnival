@@ -184,7 +184,8 @@ def train_episode(
         "avg_reward": total_reward / step if step > 0 else 0,
         "steps": step,
         "final_portfolio_value": info["portfolio_value"],
-        "total_return_pct": info["return_pct"],
+        "total_return_pct": info["return_pct"],  # Total return from initial capital
+        "episode_return_pct": info["episode_return_pct"],  # Return for this episode only
         "actions": action_counts,
         "epsilon": agent.epsilon,
         "avg_loss": np.mean(episode_losses) if episode_losses else 0.0,
@@ -297,8 +298,9 @@ def main():
                 metrics["ticker"] = ticker
                 all_metrics.append(metrics)
                 
-                print(f"    Return: {metrics['total_return_pct']:.2f}%, "
-                      f"Reward: {metrics['total_reward']:.2f}, "
+                print(f"    Episode Return: {metrics['episode_return_pct']:.2f}% | "
+                      f"Total Return: {metrics['total_return_pct']:.2f}% | "
+                      f"Reward: {metrics['total_reward']:.2f} | "
                       f"Epsilon: {metrics['epsilon']:.4f}")
                 
                 # Show cache stats after first episode
@@ -310,6 +312,7 @@ def main():
             # Aggregate metrics
             avg_metrics = {
                 "total_return_pct": np.mean([m["total_return_pct"] for m in all_metrics]),
+                "episode_return_pct": np.mean([m["episode_return_pct"] for m in all_metrics]),
                 "final_portfolio_value": np.mean([m["final_portfolio_value"] for m in all_metrics]),
                 "total_reward": np.mean([m["total_reward"] for m in all_metrics]),
                 "avg_reward": np.mean([m["avg_reward"] for m in all_metrics]),

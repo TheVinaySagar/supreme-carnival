@@ -326,27 +326,73 @@ class TradingEnvironment:
             self.llm_cache[cache_key] = empty_reports
             return empty_reports
     
-    def _execute_action(self, action: int, current_price: float):
+    def get_valid_actions(self, current_price: float) -> List[int]:
+        """
+        Get list of valid actions based on current portfolio state.
+        
+        Args:
+            current_price: Current stock price
+            
+        Returns:
+            List of valid action indices [0=SELL, 1=HOLD, 2=BUY]
+        """
+        valid = []
+        
+        # SELL (0) - only valid if we have holdings
+        if self.portfolio["holdings"] > 0:
+            valid.append(0)
+        
+        # HOLD (1) - always valid
+        valid.append(1)
+        
+        # BUY (2) - only valid if we have enough cash
+        if self.portfolio["cash"] > current_price:
+            valid.append(2)
+        
+        return valid
+    
+    def _execute_action(self, action: int, current_price: float) -> bool:
         """
         Execute trading action.
         
         Args:
             action: 0=SELL, 1=HOLD, 2=BUY
             current_price: Current stock price
+            
+        Returns:
+            True if action was valid and executed, False otherwise
         """
+        action_executed = False
+        
         if action == 0:  # SELL
             if self.portfolio["holdings"] > 0:
                 # Sell all holdings
-                self.portfolio["cash"] += self.portfolio["holdings"] * current_price
+                sell_value = self.portfolio["holdings"] * current_price
+                self.portfolio["cash"] += sell_value
                 self.portfolio["holdings"] = 0
+                action_executed = True
+                print(f"    SELL executed: {self.portfolio['holdings']} shares → ${sell_value:.2f}")
+            else:
+                print(f"    SELL ignored: No holdings to sell")
         
         elif action == 2:  # BUY
             if self.portfolio["cash"] > current_price:
                 # Buy as many shares as possible (leave 10% cash buffer)
                 shares_to_buy = int((self.portfolio["cash"] * 0.9) / current_price)
-                cost = shares_to_buy * current_price
-                self.portfolio["cash"] -= cost
-                self.portfolio["holdings"] += shares_to_buy
+                if shares_to_buy > 0:
+                    cost = shares_to_buy * current_price
+                    self.portfolio["cash"] -= cost
+                    self.portfolio["holdings"] += shares_to_buy
+                    action_executed = True
+                    print(f"    BUY executed: {shares_to_buy} shares @ ${current_price:.2f}")
+                else:
+                    print(f"    BUY ignored: Insufficient cash")
+            else:
+                print(f"    BUY ignored: Insufficient cash (${self.portfolio['cash']:.2f} < ${current_price:.2f})")
+        
+        else:  # HOLD (1)
+            action_executed = True
+            print(f"    HOLD: Cash=${self.portfolio['cash']:.2f}, Holdings={self.portfolio['holdings']}")
         
         # Update portfolio value
         holdings_value = self.portfolio["holdings"] * current_price
@@ -355,6 +401,8 @@ class TradingEnvironment:
             (self.portfolio["total_value"] - self.initial_capital) / self.initial_capital * 100
         )
         self.portfolio["total_return_pct"] = self.portfolio["unrealized_pnl_pct"]
+        
+        return action_executed
     
     def reset(self) -> np.ndarray:
         """
@@ -379,6 +427,7 @@ class TradingEnvironment:
             "unrealized_pnl_pct": 0.0,
             "total_return_pct": 0.0
         }
+        self.episode_start_value = self.initial_capital  # Track episode start for episode return
         self.prev_action = 1
         self.done = False
         self.reward_calculator.reset()
@@ -429,15 +478,16 @@ class TradingEnvironment:
         if self.done:
             raise RuntimeError("Episode is done. Call reset() to start new episode.")
         
-        # Get current price
+        # Get current price and valid actions
         current_date = self.trading_dates[self.current_date_idx]
         current_price = self.price_data[current_date]["price"]
+        valid_actions = self.get_valid_actions(current_price)
         
         # Store portfolio value before action
         portfolio_value_before = self.portfolio["total_value"]
         
-        # Execute action
-        self._execute_action(action, current_price)
+        # Execute action (returns True if valid, False if invalid)
+        action_executed = self._execute_action(action, current_price)
         
         # Get portfolio value after action
         portfolio_value_after = self.portfolio["total_value"]
@@ -466,15 +516,23 @@ class TradingEnvironment:
         # Get next state
         next_state = self._get_state()
         
+        # Calculate episode return (return since episode start)
+        episode_return_pct = ((portfolio_value_after - self.episode_start_value) / self.episode_start_value) * 100
+        
         # Info dict
+        action_names = ["SELL", "HOLD", "BUY"]
         info = {
             "date": current_date,
             "price": current_price,
             "portfolio_value": portfolio_value_after,
             "cash": self.portfolio["cash"],
             "holdings": self.portfolio["holdings"],
-            "return_pct": self.portfolio["total_return_pct"],
-            "reward_breakdown": reward_info
+            "return_pct": self.portfolio["total_return_pct"],  # Total return from initial capital
+            "episode_return_pct": episode_return_pct,  # Return for this episode only
+            "reward_breakdown": reward_info,
+            "action_taken": action_names[action],
+            "action_valid": action_executed,
+            "valid_actions": [action_names[a] for a in valid_actions]
         }
         
         return next_state, reward, self.done, info
