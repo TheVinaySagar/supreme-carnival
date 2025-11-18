@@ -220,15 +220,22 @@ class TradingEnvironment:
     def _get_cache_key(self, date_str: str) -> str:
         """
         Generate unique cache key for ticker + date combination.
+        Tries plain string format first (for synthetic data), falls back to MD5 hash (for real data).
+        This ensures backward compatibility with existing cache files.
         
         Args:
             date_str: Trading date
             
         Returns:
-            Cache key string
+            Cache key string (either plain "TICKER_DATE" or MD5 hash)
         """
-        key_str = f"{self.ticker}_{date_str}"
-        return hashlib.md5(key_str.encode()).hexdigest()
+        # Try plain string key first (for new synthetic data format)
+        plain_key = f"{self.ticker}_{date_str}"
+        if plain_key in self.llm_cache:
+            return plain_key
+        
+        # Fall back to MD5 hash (for existing ETERNAL.NS, HDFCBANK.NS data)
+        return hashlib.md5(plain_key.encode()).hexdigest()
     
     def _load_llm_cache(self):
         """Load cached LLM reports from disk if available."""

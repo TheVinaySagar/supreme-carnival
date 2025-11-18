@@ -1,21 +1,21 @@
 [
   {
     "episode": 1,
-    "timestamp": "2025-11-18T21:23:05.694491",
-    "total_return_pct": 33.558798828125035,
-    "episode_return_pct": 33.558798828125035,
-    "final_portfolio_value": 13355.879882812504,
-    "total_reward": -37.96426070849444,
-    "avg_reward": -0.7747808307856009,
+    "timestamp": "2025-11-19T01:49:32.428037",
+    "total_return_pct": 5.6778930664062495,
+    "episode_return_pct": 5.6778930664062495,
+    "final_portfolio_value": 10567.789306640625,
+    "total_reward": -25.927929907625153,
+    "avg_reward": -0.5291414266862277,
     "actions": {
       "SELL": 16,
-      "HOLD": 15,
-      "BUY": 18
+      "HOLD": 19,
+      "BUY": 14
     },
     "epsilon": 0.9137248860125932,
-    "avg_loss": 1.42048669523663,
+    "avg_loss": 0.5677831851773791,
     "tickers": [
-      "ETERNAL.NS"
+      "RELIANCE.NS"
     ]
   }
 ]
