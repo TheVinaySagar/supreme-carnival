@@ -78,7 +78,7 @@ class RLTradingAgent:
         # Hyperparameters
         self.learning_rate = self.config.get("rl_learning_rate", 1e-4)
         self.gamma = self.config.get("rl_gamma", 0.95)
-        self.epsilon = self.config.get("rl_epsilon_start", 1.0)
+        self.epsilon = self.config.get("rl_epsilon_start", 1.0)  #
         self.epsilon_min = self.config.get("rl_epsilon_min", 0.01)
         self.epsilon_decay = self.config.get("rl_epsilon_decay", 0.995)
         self.target_update_freq = self.config.get("rl_target_update", 100)

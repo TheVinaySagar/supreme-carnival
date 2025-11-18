@@ -76,6 +76,7 @@ class RewardCalculator:
         returns_array = np.array(list(self.recent_returns))
         volatility = np.std(returns_array)
         
+        
         # Penalize high volatility
         risk_penalty = -volatility * 100.0
         

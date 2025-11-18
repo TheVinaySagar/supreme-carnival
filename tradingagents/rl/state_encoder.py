@@ -39,7 +39,7 @@ class TradingStateEncoder:
         self.market_features_dim = 15  # Price, volume, technical indicators
         self.portfolio_features_dim = 5  # Cash, holdings, returns, etc.
         self.temporal_features_dim = 4  # Date features
-        self.text_embedding_dim = self.embedding_dim * 4  # 4 reports
+        self.text_embedding_dim = self.embedding_dim * 6  # 6 reports (4 analysts + bull + bear)
         
         self.total_dim = (
             self.market_features_dim + 
@@ -169,30 +169,41 @@ class TradingStateEncoder:
     
     def encode_text_reports(self, state: Dict[str, Any]) -> np.ndarray:
         """
-        Encode LLM text reports into embeddings.
+        Encode all 6 text reports into embeddings.
+        
+        Uses 6 reports: 4 analyst reports + 2 researcher reports (bull + bear).
+        This gives the RL model both detailed analyst views AND synthesized perspectives.
         
         Args:
-            state: AgentState dictionary with text reports
+            state: AgentState dictionary with all reports
             
         Returns:
-            Concatenated embedding vectors
+            Concatenated embedding vectors (6 × embedding_dim)
         """
-        # Get embeddings for each report
+        # Get embeddings for 4 analyst reports
         market_emb = self.get_embedding(state.get("market_report", ""))
         social_emb = self.get_embedding(state.get("sentiment_report", ""))
         news_emb = self.get_embedding(state.get("news_report", ""))
         fundamentals_emb = self.get_embedding(state.get("fundamentals_report", ""))
         
-        # Concatenate all embeddings
+        # Get embeddings for bull and bear researcher reports
+        bull_emb = self.get_embedding(state.get("bull_report", ""))
+        bear_emb = self.get_embedding(state.get("bear_report", ""))
+        
+        # Concatenate all 6 embeddings
         text_features = np.concatenate([
             market_emb,
             social_emb,
             news_emb,
-            fundamentals_emb
+            fundamentals_emb,
+            bull_emb,
+            bear_emb
         ])
         
         return text_features.astype(np.float32)
     
+
+    # we are concatenate all the features and pass it to our NN..
     def encode_state(self, state: Dict[str, Any]) -> np.ndarray:
         """
         Encode complete trading state into RL feature vector.

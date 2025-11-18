@@ -248,8 +248,36 @@ class TradingEnvironment:
         else:
             print(f"No cached LLM reports found. Will generate fresh reports.")
     
+    def _save_llm_cache_immediately(self, cache_key, reports):
+        """Save a single report to cache file immediately (incremental save)."""
+        cache_file = os.path.join(
+            self.cache_dir,
+            f"{self.ticker}_{self.start_date.strftime('%Y-%m-%d')}_{self.end_date.strftime('%Y-%m-%d')}.json"
+        )
+        
+        try:
+            # Load existing cache from file
+            existing_cache = {}
+            if os.path.exists(cache_file):
+                with open(cache_file, 'r') as f:
+                    existing_cache = json.load(f)
+            
+            # Update with new report
+            existing_cache[cache_key] = reports
+            
+            # Write back to file immediately
+            with open(cache_file, 'w') as f:
+                json.dump(existing_cache, f, indent=2)
+            
+            # Also update in-memory cache
+            self.llm_cache[cache_key] = reports
+            
+            print(f"💾 Saved report for {cache_key} to cache immediately")
+        except Exception as e:
+            print(f"⚠️  Warning: Failed to save cache immediately: {e}")
+    
     def _save_llm_cache(self):
-        """Save LLM reports cache to disk."""
+        """Save LLM reports cache to disk (batch save - now only used as fallback)."""
         if not self.llm_cache:
             return
         
@@ -267,52 +295,100 @@ class TradingEnvironment:
     
     def _get_llm_reports(self, date_str: str) -> Dict[str, str]:
         """
-        Get LLM reports for the current date (cached or freshly generated).
+        Get all 6 reports for the current date (cached or freshly generated).
         
-        This method implements intelligent caching:
-        - First checks in-memory cache
-        - If not found, generates reports via trading_graph
-        - Saves to cache for reuse in future episodes
+        Returns 4 analyst reports + 2 researcher reports (bull/bear).
+        
+        This method implements hierarchical caching with backward compatibility:
+        1. First checks cache for all 6 reports (new format)
+        2. If not found but old 4-analyst cache exists, loads it and extracts bull/bear
+        3. If nothing cached, runs full trading_graph to generate all reports
+        4. Caches all 6 reports for future use
         
         Args:
             date_str: Trading date
             
         Returns:
-            Dictionary with analyst reports
+            Dictionary with 4 analyst reports + bull_report + bear_report
         """
         if not self.use_llm_features or self.trading_graph is None:
             return {
                 "market_report": "",
                 "sentiment_report": "",
                 "news_report": "",
-                "fundamentals_report": ""
+                "fundamentals_report": "",
+                "bull_report": "",
+                "bear_report": ""
             }
         
-        # Check cache first
         cache_key = self._get_cache_key(date_str)
-        if cache_key in self.llm_cache:
-            return self.llm_cache[cache_key]
         
-        # Generate fresh reports
-        print(f"⚡ Generating LLM reports for {self.ticker} on {date_str}...")
+        # LEVEL 1: Check for cached reports
+        if cache_key in self.llm_cache:
+            cached = self.llm_cache[cache_key]
+            # Check if it's new format (all 6 reports)
+            if all(k in cached for k in ["market_report", "sentiment_report", "news_report", 
+                                          "fundamentals_report", "bull_report", "bear_report"]):
+                return cached
+            # Old format (only 4 analysts) - run debate to get bull/bear reports
+            elif "market_report" in cached:
+                print(f"🔄 Old 4-analyst cache found for {date_str}. Running debate with cached analyst reports...")
+                try:
+                    # Run trading graph with cached analyst reports (skips analyst regeneration, only runs debate)
+                    _, _ =    self.trading_graph.propagate(self.ticker, date_str, cached_analyst_reports=cached)
+                    
+                    # Extract state
+                    state = self.trading_graph.curr_state
+                    
+                    # Extract bull/bear reports from the debate state
+                    bull_bear_reports = self._extract_bull_bear_from_state(state, cached)
+                    
+                    # Combine cached analyst reports with new bull/bear reports
+                    all_reports = {**cached, **bull_bear_reports}
+                    
+                    # Save to file immediately
+                    self._save_llm_cache_immediately(cache_key, all_reports)
+                    print(f"✓ Added bull/bear reports to cache for {date_str} (reused cached analyst reports)")
+                    
+                    return all_reports
+                    
+                except Exception as e:
+                    print(f"Warning: Failed to generate bull/bear debate: {e}")
+                    # Fallback: use concatenated analyst reports
+                    bull_bear_reports = self._extract_bull_bear_from_state(None, cached)
+                    all_reports = {**cached, **bull_bear_reports}
+                    self._save_llm_cache_immediately(cache_key, all_reports)
+                    return all_reports
+        
+        # LEVEL 2: Generate fresh reports from trading_graph
+        print(f"⚡ Generating 6 reports for RL (running TradingAgentsGraph) for {self.ticker} on {date_str}...")
         try:
-            # Run trading graph to get LLM analysis
+            # Run full trading graph to get analyst reports and bull/bear debate
+            # Note: This runs the complete system, but we only extract 6 reports for RL
             _, _ = self.trading_graph.propagate(self.ticker, date_str)
             
-            # Extract reports from final state
+            # Extract state
             state = self.trading_graph.curr_state
-            reports = {
+            
+            # Get the 4 analyst reports
+            analyst_reports = {
                 "market_report": state.get("market_report", ""),
                 "sentiment_report": state.get("sentiment_report", ""),
                 "news_report": state.get("news_report", ""),
                 "fundamentals_report": state.get("fundamentals_report", "")
             }
             
-            # Cache the reports
-            self.llm_cache[cache_key] = reports
-            print(f"✓ Cached LLM reports for {date_str}")
+            # Extract bull/bear reports from the debate state
+            bull_bear_reports = self._extract_bull_bear_from_state(state, analyst_reports)
             
-            return reports
+            # Combine all 6 reports
+            all_reports = {**analyst_reports, **bull_bear_reports}
+            
+            # Save to file immediately
+            self._save_llm_cache_immediately(cache_key, all_reports)
+            print(f"✓ Cached 6 reports for RL (4 analysts + bull/bear researchers) for {date_str}")
+            
+            return all_reports
             
         except Exception as e:
             print(f"Warning: Failed to generate LLM reports: {e}")
@@ -320,11 +396,82 @@ class TradingEnvironment:
                 "market_report": "",
                 "sentiment_report": "",
                 "news_report": "",
-                "fundamentals_report": ""
+                "fundamentals_report": "",
+                "bull_report": "",
+                "bear_report": ""
             }
-            # Cache empty reports to avoid retrying
-            self.llm_cache[cache_key] = empty_reports
+            # Cache empty reports to avoid retrying (save immediately)
+            self._save_llm_cache_immediately(cache_key, empty_reports)
             return empty_reports
+    
+    def _extract_bull_bear_from_state(self, state: Optional[Dict], analyst_reports: Dict[str, str]) -> Dict[str, str]:
+        """
+        Extract bull and bear reports from the trading graph state.
+        
+        If state is available (from fresh run), uses the debate history.
+        Otherwise, creates placeholder summaries.
+        
+        Args:
+            state: Trading graph state (may be None for old cache)
+            analyst_reports: Dictionary with 4 analyst reports
+            
+        Returns:
+            Dictionary with bull_report and bear_report
+        """
+        if state is not None and "investment_debate_state" in state:
+            # Extract from debate history
+            debate_state = state["investment_debate_state"]
+            
+            # DEBUG: Check the debate state structure
+            print(f"🔍 DEBUG: debate_state type = {type(debate_state)}")
+            print(f"🔍 DEBUG: debate_state keys = {list(debate_state.keys()) if isinstance(debate_state, dict) else 'NOT A DICT'}")
+            
+            bull_history = debate_state.get("bull_history", "")
+            bear_history = debate_state.get("bear_history", "")
+            
+            # DEBUG: Check what we got
+            print(f"🔍 DEBUG: bull_history length = {len(bull_history)}, bear_history length = {len(bear_history)}")
+            if not bull_history:
+                print(f"⚠️  WARNING: bull_history is empty! Debate might not have run.")
+                print(f"⚠️  DEBUG: bull_history value = '{bull_history}'")
+            if not bear_history:
+                print(f"⚠️  WARNING: bear_history is empty! Debate might not have run.")
+                print(f"⚠️  DEBUG: bear_history value = '{bear_history}'")
+            
+            # If debate happened, use those reports
+            if bull_history and bear_history:
+                print(f"✅ Using real debate reports from investment_debate_state")
+                return {
+                    "bull_report": bull_history,
+                    "bear_report": bear_history
+                }
+        
+        # Fallback: Create simple bull/bear summaries from analyst reports
+        # This is used when we only have old cached analyst reports
+        print(f"⚠️  FALLBACK: Using concatenated analyst reports as bull/bear (debate didn't produce results)")
+        market = analyst_reports.get("market_report", "")
+        sentiment = analyst_reports.get("sentiment_report", "")
+        news = analyst_reports.get("news_report", "")
+        fundamentals = analyst_reports.get("fundamentals_report", "")
+        
+        combined = f"""Market Analysis:
+{market}
+
+Social Sentiment:
+{sentiment}
+
+News Analysis:
+{news}
+
+Fundamentals:
+{fundamentals}"""
+        
+        # For backward compatibility with old cache, use combined report for both
+        # This maintains functionality while transitioning to new format
+        return {
+            "bull_report": f"BULL PERSPECTIVE:\n{combined}",
+            "bear_report": f"BEAR PERSPECTIVE:\n{combined}"
+        }
     
     def get_valid_actions(self, current_price: float) -> List[int]:
         """
