@@ -1,21 +1,724 @@
 [
   {
     "episode": 1,
-    "timestamp": "2025-11-19T01:49:32.428037",
-    "total_return_pct": 5.6778930664062495,
-    "episode_return_pct": 5.6778930664062495,
-    "final_portfolio_value": 10567.789306640625,
-    "total_reward": -25.927929907625153,
-    "avg_reward": -0.5291414266862277,
+    "timestamp": "2025-11-19T15:57:58.536955",
+    "total_return_pct": 56.374697875976565,
+    "episode_return_pct": 56.374697875976565,
+    "final_portfolio_value": 15637.469787597656,
+    "total_reward": 285.33869380853906,
+    "avg_reward": 8.646627085107244,
     "actions": {
-      "SELL": 16,
-      "HOLD": 19,
-      "BUY": 14
+      "SELL": 9,
+      "HOLD": 7,
+      "BUY": 17
     },
-    "epsilon": 0.9137248860125932,
-    "avg_loss": 0.5677831851773791,
+    "epsilon": 0.990025,
+    "avg_loss": 31.06652545928955,
     "tickers": [
-      "RELIANCE.NS"
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 2,
+    "timestamp": "2025-11-19T15:59:35.015895",
+    "total_return_pct": 52.11199554443361,
+    "episode_return_pct": 52.11199554443361,
+    "final_portfolio_value": 15211.199554443361,
+    "total_reward": 225.2892910273766,
+    "avg_reward": 6.826948212950806,
+    "actions": {
+      "SELL": 7,
+      "HOLD": 13,
+      "BUY": 13
+    },
+    "epsilon": 0.8390886103705794,
+    "avg_loss": 28.587536551735617,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 3,
+    "timestamp": "2025-11-19T16:01:14.457264",
+    "total_return_pct": 25.97100585937498,
+    "episode_return_pct": 25.97100585937498,
+    "final_portfolio_value": 12597.100585937498,
+    "total_reward": 11.91696861355232,
+    "avg_reward": 0.361120261016737,
+    "actions": {
+      "SELL": 7,
+      "HOLD": 16,
+      "BUY": 10
+    },
+    "epsilon": 0.7111635524897149,
+    "avg_loss": 32.37946319580078,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 4,
+    "timestamp": "2025-11-19T16:02:42.297748",
+    "total_return_pct": 40.18138122558597,
+    "episode_return_pct": 40.18138122558597,
+    "final_portfolio_value": 14018.138122558597,
+    "total_reward": 178.09931681913227,
+    "avg_reward": 5.3969489945191595,
+    "actions": {
+      "SELL": 11,
+      "HOLD": 5,
+      "BUY": 17
+    },
+    "epsilon": 0.6027415843082742,
+    "avg_loss": 31.114626450972125,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 5,
+    "timestamp": "2025-11-19T16:04:13.324142",
+    "total_return_pct": 19.242796020507793,
+    "episode_return_pct": 19.242796020507793,
+    "final_portfolio_value": 11924.27960205078,
+    "total_reward": -71.27464922150247,
+    "avg_reward": -2.1598378551970447,
+    "actions": {
+      "SELL": 7,
+      "HOLD": 6,
+      "BUY": 20
+    },
+    "epsilon": 0.510849320360386,
+    "avg_loss": 31.657606587265477,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 6,
+    "timestamp": "2025-11-19T16:05:44.248726",
+    "total_return_pct": 93.69970886230469,
+    "episode_return_pct": 93.69970886230469,
+    "final_portfolio_value": 19369.97088623047,
+    "total_reward": 474.6996078892982,
+    "avg_reward": 14.384836602706006,
+    "actions": {
+      "SELL": 2,
+      "HOLD": 6,
+      "BUY": 25
+    },
+    "epsilon": 0.43296668905325736,
+    "avg_loss": 30.065939874360055,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 7,
+    "timestamp": "2025-11-19T16:07:21.200299",
+    "total_return_pct": 68.83258987426758,
+    "episode_return_pct": 68.83258987426758,
+    "final_portfolio_value": 16883.258987426758,
+    "total_reward": 318.3911305336494,
+    "avg_reward": 9.648216076777254,
+    "actions": {
+      "SELL": 4,
+      "HOLD": 5,
+      "BUY": 24
+    },
+    "epsilon": 0.3669578217261671,
+    "avg_loss": 32.20672717238917,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 8,
+    "timestamp": "2025-11-19T16:08:55.820845",
+    "total_return_pct": 91.24699722290039,
+    "episode_return_pct": 91.24699722290039,
+    "final_portfolio_value": 19124.69972229004,
+    "total_reward": 442.94295738051113,
+    "avg_reward": 13.422513860015489,
+    "actions": {
+      "SELL": 3,
+      "HOLD": 3,
+      "BUY": 27
+    },
+    "epsilon": 0.31101247816653554,
+    "avg_loss": 32.23705462253455,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 9,
+    "timestamp": "2025-11-19T16:10:27.679088",
+    "total_return_pct": 98.40869995117181,
+    "episode_return_pct": 98.40869995117181,
+    "final_portfolio_value": 19840.86999511718,
+    "total_reward": 548.0295711003877,
+    "avg_reward": 16.606956700011747,
+    "actions": {
+      "SELL": 4,
+      "HOLD": 3,
+      "BUY": 26
+    },
+    "epsilon": 0.26359640222486147,
+    "avg_loss": 33.45479814934008,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 10,
+    "timestamp": "2025-11-19T16:12:00.471997",
+    "total_return_pct": 97.21058715820313,
+    "episode_return_pct": 97.21058715820313,
+    "final_portfolio_value": 19721.058715820312,
+    "total_reward": 515.5992245322713,
+    "avg_reward": 15.62421892522034,
+    "actions": {
+      "SELL": 4,
+      "HOLD": 0,
+      "BUY": 29
+    },
+    "epsilon": 0.22340924607110255,
+    "avg_loss": 34.0983052109227,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 11,
+    "timestamp": "2025-11-19T16:13:43.228104",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.530348231239,
+    "avg_reward": 13.80394994640118,
+    "actions": {
+      "SELL": 1,
+      "HOLD": 3,
+      "BUY": 29
+    },
+    "epsilon": 0.18934890919900021,
+    "avg_loss": 33.20751138166948,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 12,
+    "timestamp": "2025-11-19T16:15:24.034411",
+    "total_return_pct": 85.6558995056152,
+    "episode_return_pct": 85.6558995056152,
+    "final_portfolio_value": 18565.58995056152,
+    "total_reward": 385.60290769820506,
+    "avg_reward": 11.684936596915305,
+    "actions": {
+      "SELL": 2,
+      "HOLD": 2,
+      "BUY": 29
+    },
+    "epsilon": 0.16048131420416054,
+    "avg_loss": 35.88913484053178,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 13,
+    "timestamp": "2025-11-19T16:17:03.081859",
+    "total_return_pct": 90.88629669189456,
+    "episode_return_pct": 90.88629669189456,
+    "final_portfolio_value": 19088.629669189457,
+    "total_reward": 442.85258927258974,
+    "avg_reward": 13.41977543250272,
+    "actions": {
+      "SELL": 3,
+      "HOLD": 0,
+      "BUY": 30
+    },
+    "epsilon": 0.13601479046086049,
+    "avg_loss": 35.794984528512664,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 14,
+    "timestamp": "2025-11-19T16:18:42.793719",
+    "total_return_pct": 98.32969833374024,
+    "episode_return_pct": 98.32969833374024,
+    "final_portfolio_value": 19832.969833374023,
+    "total_reward": 453.9586374166946,
+    "avg_reward": 13.756322345960443,
+    "actions": {
+      "SELL": 1,
+      "HOLD": 0,
+      "BUY": 32
+    },
+    "epsilon": 0.11527836319047392,
+    "avg_loss": 35.17810561440208,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 15,
+    "timestamp": "2025-11-19T16:20:21.210655",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.09770335251664321,
+    "avg_loss": 36.57603784040971,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 16,
+    "timestamp": "2025-11-19T16:21:59.042091",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.590348231239,
+    "avg_reward": 13.805768128219363,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 1,
+      "BUY": 32
+    },
+    "epsilon": 0.08280777787605056,
+    "avg_loss": 37.028990254257664,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 17,
+    "timestamp": "2025-11-19T16:23:33.728706",
+    "total_return_pct": 111.84210815429685,
+    "episode_return_pct": 111.84210815429685,
+    "final_portfolio_value": 21184.210815429684,
+    "total_reward": 578.0514859941998,
+    "avg_reward": 17.516711696793934,
+    "actions": {
+      "SELL": 1,
+      "HOLD": 0,
+      "BUY": 32
+    },
+    "epsilon": 0.07018314008827135,
+    "avg_loss": 38.54849168026086,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 18,
+    "timestamp": "2025-11-19T16:25:06.525279",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.570348231239,
+    "avg_reward": 13.805162067613303,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 2,
+      "BUY": 31
+    },
+    "epsilon": 0.05948321859358224,
+    "avg_loss": 35.49991341793176,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 19,
+    "timestamp": "2025-11-19T16:26:46.180537",
+    "total_return_pct": 61.207989501953165,
+    "episode_return_pct": 61.207989501953165,
+    "final_portfolio_value": 16120.798950195316,
+    "total_reward": 234.96916091910407,
+    "avg_reward": 7.120277603609214,
+    "actions": {
+      "SELL": 3,
+      "HOLD": 0,
+      "BUY": 30
+    },
+    "epsilon": 0.05041457663196215,
+    "avg_loss": 34.884148279825844,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 20,
+    "timestamp": "2025-11-19T16:28:25.707036",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.590348231239,
+    "avg_reward": 13.805768128219363,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 1,
+      "BUY": 32
+    },
+    "epsilon": 0.04272851397543923,
+    "avg_loss": 37.59182242191199,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 21,
+    "timestamp": "2025-11-19T16:29:57.266724",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.03621424652392737,
+    "avg_loss": 37.78515220410896,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 22,
+    "timestamp": "2025-11-19T16:31:36.882707",
+    "total_return_pct": 105.8550959777832,
+    "episode_return_pct": 105.8550959777832,
+    "final_portfolio_value": 20585.50959777832,
+    "total_reward": 520.8713302897759,
+    "avg_reward": 15.783979705750784,
+    "actions": {
+      "SELL": 1,
+      "HOLD": 0,
+      "BUY": 32
+    },
+    "epsilon": 0.030693125720441184,
+    "avg_loss": 35.26681483875621,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 23,
+    "timestamp": "2025-11-19T16:33:19.333603",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.02601373925779093,
+    "avg_loss": 39.41871712424538,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 24,
+    "timestamp": "2025-11-19T16:34:57.875696",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.590348231239,
+    "avg_reward": 13.805768128219363,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 1,
+      "BUY": 32
+    },
+    "epsilon": 0.022047758717570132,
+    "avg_loss": 38.01230950789018,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 25,
+    "timestamp": "2025-11-19T16:36:39.009833",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.018686420266267767,
+    "avg_loss": 35.63460280678489,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 26,
+    "timestamp": "2025-11-19T16:38:15.326285",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01583754189442009,
+    "avg_loss": 37.213017203591086,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 27,
+    "timestamp": "2025-11-19T16:39:54.401463",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.013422995398979608,
+    "avg_loss": 37.10109803170869,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 28,
+    "timestamp": "2025-11-19T16:41:36.522043",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01137656378004644,
+    "avg_loss": 36.083751273877695,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 29,
+    "timestamp": "2025-11-19T16:43:24.292674",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 38.929393363721445,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 30,
+    "timestamp": "2025-11-19T16:45:03.428786",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 38.39058592825225,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 31,
+    "timestamp": "2025-11-19T16:46:41.979115",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 37.17311171329383,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 32,
+    "timestamp": "2025-11-19T16:48:17.921002",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 39.256336732344195,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 33,
+    "timestamp": "2025-11-19T16:49:55.862027",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 36.46465810139974,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 34,
+    "timestamp": "2025-11-19T16:51:29.228418",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 32.97619120279948,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 35,
+    "timestamp": "2025-11-19T16:53:04.539225",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 38.153045538699985,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 36,
+    "timestamp": "2025-11-19T16:54:47.477617",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 38.010001211455375,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 37,
+    "timestamp": "2025-11-19T16:56:21.362945",
+    "total_return_pct": 119.77480545043946,
+    "episode_return_pct": 119.77480545043946,
+    "final_portfolio_value": 21977.480545043945,
+    "total_reward": 653.6050125661377,
+    "avg_reward": 19.806212502004172,
+    "actions": {
+      "SELL": 2,
+      "HOLD": 0,
+      "BUY": 31
+    },
+    "epsilon": 0.01,
+    "avg_loss": 33.51075571233576,
+    "tickers": [
+      "ETERNAL.NS"
+    ]
+  },
+  {
+    "episode": 38,
+    "timestamp": "2025-11-19T16:57:55.540490",
+    "total_return_pct": 98.97919860839843,
+    "episode_return_pct": 98.97919860839843,
+    "final_portfolio_value": 19897.919860839844,
+    "total_reward": 455.61034823123896,
+    "avg_reward": 13.806374188825423,
+    "actions": {
+      "SELL": 0,
+      "HOLD": 0,
+      "BUY": 33
+    },
+    "epsilon": 0.01,
+    "avg_loss": 36.31399143103397,
+    "tickers": [
+      "ETERNAL.NS"
     ]
   }
 ]

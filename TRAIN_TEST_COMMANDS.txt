@@ -1,0 +1,155 @@
+═══════════════════════════════════════════════════════════════
+🎯 RELIANCE.NS TRAINING & TESTING - CORRECT COMMANDS
+═══════════════════════════════════════════════════════════════
+
+📊 DATASET SPLIT SUMMARY:
+──────────────────────────────────────────────────────────────
+• Train Set: 39 weeks (2023-01-02 to 2023-10-10) - 80%
+• Test Set:  10 weeks (2023-10-17 to 2023-12-22) - 20%
+• Total:     49 weeks (full 2023 trading year)
+
+⚠️  IMPORTANT: Use exact dates below (not Jan 1 or Oct 31!)
+──────────────────────────────────────────────────────────────
+
+
+═══════════════════════════════════════════════════════════════
+STEP 1: TRAIN THE MODEL (80% data)
+═══════════════════════════════════════════════════════════════
+
+python -m tradingagents.rl.train_rl_agent \
+  --tickers RELIANCE.NS \
+  --start-date 2023-01-02 \
+  --end-date 2023-10-10 \
+  --num-episodes 50 \
+  --model-name RELIANCE_NS_2023_TRAIN \
+  --use-llm-features
+
+Expected:
+  • Cache: 39/39 reports (100% cached)
+  • Time: ~12-15 min episode 1, ~15-20 sec per episode after
+  • Output: models/RELIANCE_NS_2023_TRAIN_final.pth
+
+
+═══════════════════════════════════════════════════════════════
+STEP 2: TEST ON UNSEEN DATA (20% data)
+═══════════════════════════════════════════════════════════════
+
+python -m tradingagents.rl.evaluate_rl_agent \
+  --tickers RELIANCE.NS \
+  --start-date 2023-10-17 \
+  --end-date 2023-12-22 \
+  --model-path models/RELIANCE_NS_2023_TRAIN_final.pth \
+  --use-llm-features
+
+Expected:
+  • Cache: 10/10 reports (100% cached)
+  • Time: ~3-5 minutes
+  • Metrics: Return, Sharpe, Drawdown, Win Rate
+
+
+═══════════════════════════════════════════════════════════════
+📁 CACHE FILES USED:
+═══════════════════════════════════════════════════════════════
+
+Training:
+  tradingagents/dataflows/data_cache/llm_reports/RELIANCE.NS_2023-01-01_2023-10-31.json
+  ✅ Contains 39 entries (Jan 2 - Oct 10)
+
+Testing:
+  tradingagents/dataflows/data_cache/llm_reports/RELIANCE.NS_2023-11-01_2023-12-31.json
+  ✅ Contains 10 entries (Oct 17 - Dec 22)
+
+
+═══════════════════════════════════════════════════════════════
+🚫 COMMON MISTAKES TO AVOID:
+═══════════════════════════════════════════════════════════════
+
+❌ DON'T USE: --start-date 2023-01-01 (Sunday, no trading)
+✅ USE:       --start-date 2023-01-02 (Monday, first trading day)
+
+❌ DON'T USE: --end-date 2023-10-31 (goes beyond 80% split)
+✅ USE:       --end-date 2023-10-10 (exact 80% split point)
+
+❌ DON'T USE: Test dates from Nov 1 (no trading that day)
+✅ USE:       --start-date 2023-10-17 (first test trading day)
+
+
+═══════════════════════════════════════════════════════════════
+✅ VERIFICATION CHECKLIST:
+═══════════════════════════════════════════════════════════════
+
+Before training:
+  [ ] Using dates: 2023-01-02 to 2023-10-10
+  [ ] Cache shows: 39/39 reports (100%)
+  [ ] State dimension: 9240
+  [ ] Device: cuda
+
+During training:
+  [ ] Episode 1 takes ~12-15 min (generating bull/bear debates)
+  [ ] Episodes 2-50 take ~15-20 sec each
+  [ ] Rewards are POSITIVE when returns are positive
+  [ ] Avg loss decreases over episodes
+
+After training:
+  [ ] Model saved: models/RELIANCE_NS_2023_TRAIN_final.pth
+  [ ] Training return > 5% (decent performance)
+  [ ] Ready to test on unseen data
+
+During testing:
+  [ ] Using dates: 2023-10-17 to 2023-12-22
+  [ ] Cache shows: 10/10 reports (100%)
+  [ ] No training/updates (pure evaluation)
+  [ ] Epsilon = 0 (no exploration)
+
+After testing:
+  [ ] Test return is positive
+  [ ] Test/Train ratio > 0.4 (good generalization)
+  [ ] Agent beats buy-and-hold baseline
+
+
+═══════════════════════════════════════════════════════════════
+📊 SUCCESS METRICS:
+═══════════════════════════════════════════════════════════════
+
+Good Performance:
+  • Train return: >10%
+  • Test return: >5%
+  • Test/Train ratio: >0.6
+  • Sharpe ratio: >1.0
+  • Max drawdown: <15%
+
+Excellent Performance:
+  • Train return: >15%
+  • Test return: >10%
+  • Test/Train ratio: >0.8
+  • Sharpe ratio: >1.5
+  • Max drawdown: <10%
+
+
+═══════════════════════════════════════════════════════════════
+🔧 WHY THE SPLIT SCRIPT OUTPUT DIFFERENT DATES:
+═══════════════════════════════════════════════════════════════
+
+The split script output said:
+  "Train set: 39 weeks (Jan 2 - Oct 10)"  ← CORRECT!
+  
+But the file was named:
+  RELIANCE.NS_2023-01-01_2023-10-31.json  ← Misleading filename!
+  
+The FILENAME uses broad date ranges (Jan 1 - Oct 31) but the
+ACTUAL CACHE KEYS inside use exact trading days (Jan 2 - Oct 10).
+
+Always use the dates FROM THE CACHE KEYS, not the filename!
+
+
+═══════════════════════════════════════════════════════════════
+🎓 COPY-PASTE READY:
+═══════════════════════════════════════════════════════════════
+
+# TRAIN (run this first):
+python -m tradingagents.rl.train_rl_agent --tickers RELIANCE.NS --start-date 2023-01-02 --end-date 2023-10-10 --num-episodes 50 --model-name RELIANCE_NS_2023_TRAIN --use-llm-features
+
+# TEST (run after training completes):
+python -m tradingagents.rl.evaluate_rl_agent --tickers RELIANCE.NS --start-date 2023-10-17 --end-date 2023-12-22 --model-path models/RELIANCE_NS_2023_TRAIN_final.pth --use-llm-features
+
+═══════════════════════════════════════════════════════════════

@@ -98,6 +98,7 @@ class TradingEnvironment:
             "total_return_pct": 0.0
         }
         self.prev_action = 1  # Start with HOLD
+        self.prev_portfolio_value = initial_capital  # Track portfolio value at end of previous step
         self.done = False
         
         print(f"Environment initialized: {ticker} from {start_date} to {end_date}")
@@ -583,6 +584,7 @@ Fundamentals:
         }
         self.episode_start_value = self.initial_capital  # Track episode start for episode return
         self.prev_action = 1
+        self.prev_portfolio_value = self.initial_capital  # Track portfolio value at end of previous step
         self.done = False
         self.reward_calculator.reset()
         
@@ -637,14 +639,23 @@ Fundamentals:
         current_price = self.price_data[current_date]["price"]
         valid_actions = self.get_valid_actions(current_price)
         
-        # Store portfolio value before action
-        portfolio_value_before = self.portfolio["total_value"]
+        # FIXED: Use portfolio value from END of previous step (before price update)
+        # This captures BOTH the price movement AND the action effect
+        portfolio_value_before = self.prev_portfolio_value
         
         # Execute action (returns True if valid, False if invalid)
         action_executed = self._execute_action(action, current_price)
         
-        # Get portfolio value after action
+        # Get portfolio value after action (at current price)
         portfolio_value_after = self.portfolio["total_value"]
+        
+        # DEBUG: Print portfolio state after action
+        if self.current_step < 10:
+            print(f"      [DEBUG Step {self.current_step}] Before: ${portfolio_value_before:.2f}, After: ${portfolio_value_after:.2f}")
+            print(f"        Cash: ${self.portfolio['cash']:.2f}, Holdings: {self.portfolio['holdings']}, Price: ${current_price:.2f}")
+        
+        # Store for next step
+        self.prev_portfolio_value = portfolio_value_after
         
         # Move to next step
         self.current_step += 1

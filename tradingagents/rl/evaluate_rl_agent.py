@@ -62,6 +62,17 @@ def parse_args():
         default="./eval_results",
         help="Directory to save evaluation results"
     )
+    parser.add_argument(
+        "--use-llm-features",
+        action="store_true",
+        help="Use LLM features for evaluation (slower but more accurate)"
+    )
+    parser.add_argument(
+        "--save-trades",
+        action="store_true",
+        default=True,
+        help="Save detailed trade-by-trade log"
+    )
     
     return parser.parse_args()
 
@@ -133,7 +144,8 @@ class BaselineStrategy:
 def evaluate_agent(
     env: TradingEnvironment,
     agent: RLTradingAgent,
-    ticker: str
+    ticker: str,
+    save_trades: bool = True
 ) -> Dict[str, Any]:
     """
     Evaluate RL agent on environment.
@@ -142,6 +154,7 @@ def evaluate_agent(
         env: Trading environment
         agent: RL agent
         ticker: Stock ticker
+        save_trades: Save detailed trade log
         
     Returns:
         Evaluation results
@@ -156,7 +169,11 @@ def evaluate_agent(
     portfolio_values = []
     dates = []
     prices = []
+    cash_history = []
+    holdings_history = []
+    trade_log = []
     
+    step = 0
     while not done:
         action = agent.get_action(state, training=False)
         next_state, reward, done, info = env.step(action)
@@ -166,8 +183,25 @@ def evaluate_agent(
         portfolio_values.append(info["portfolio_value"])
         dates.append(info["date"])
         prices.append(info["price"])
+        cash_history.append(info.get("cash", 0))
+        holdings_history.append(info.get("holdings", 0))
+        
+        # Log trade details
+        if save_trades:
+            action_names = ["SELL", "HOLD", "BUY"]
+            trade_log.append({
+                "step": step,
+                "date": info["date"],
+                "price": info["price"],
+                "action": action_names[action],
+                "cash": info.get("cash", 0),
+                "holdings": info.get("holdings", 0),
+                "portfolio_value": info["portfolio_value"],
+                "reward": reward
+            })
         
         state = next_state
+        step += 1
     
     # Calculate metrics
     action_names = ["SELL", "HOLD", "BUY"]
@@ -178,8 +212,10 @@ def evaluate_agent(
     
     results = {
         "ticker": ticker,
+        "initial_capital": env.initial_capital,
         "final_portfolio_value": portfolio_values[-1],
         "total_return_pct": (portfolio_values[-1] - env.initial_capital) / env.initial_capital * 100,
+        "total_return_dollars": portfolio_values[-1] - env.initial_capital,
         "total_reward": sum(rewards),
         "avg_reward": np.mean(rewards),
         "actions": action_counts,
@@ -188,10 +224,14 @@ def evaluate_agent(
         "max_drawdown": calculate_max_drawdown(portfolio_values),
         "win_rate": calculate_win_rate(actions, prices),
         "volatility": np.std(returns_pct) if len(returns_pct) > 0 else 0.0,
+        "num_steps": len(actions),
         "dates": dates,
         "portfolio_values": portfolio_values,
+        "cash_history": cash_history,
+        "holdings_history": holdings_history,
         "actions_taken": actions,
-        "prices": prices
+        "prices": prices,
+        "trade_log": trade_log if save_trades else []
     }
     
     return results
@@ -234,7 +274,8 @@ def calculate_win_rate(actions: List[int], prices: List[float]) -> float:
 def generate_report(
     rl_results: Dict[str, Any],
     baselines: Dict[str, Dict[str, Any]],
-    output_dir: str
+    output_dir: str,
+    save_trades: bool = True
 ):
     """
     Generate evaluation report.
@@ -243,8 +284,11 @@ def generate_report(
         rl_results: RL agent results
         baselines: Baseline strategy results
         output_dir: Output directory
+        save_trades: Save trade log to CSV
     """
     os.makedirs(output_dir, exist_ok=True)
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
     # Create summary table
     summary = {
@@ -290,8 +334,9 @@ def generate_report(
     print(f"Report saved to {report_path}")
     
     # Save detailed results as JSON
-    detailed_path = os.path.join(output_dir, f"{rl_results['ticker']}_detailed_results.json")
+    detailed_path = os.path.join(output_dir, f"{rl_results['ticker']}_detailed_results_{timestamp}.json")
     detailed_results = {
+        "evaluation_timestamp": timestamp,
         "rl_agent": rl_results,
         "baselines": baselines,
         "summary": summary
@@ -317,6 +362,26 @@ def generate_report(
         json.dump(detailed_results, f, indent=2)
     
     print(f"Detailed results saved to {detailed_path}")
+    
+    # Save trade log as CSV
+    if save_trades and rl_results.get("trade_log"):
+        trade_log_path = os.path.join(output_dir, f"{rl_results['ticker']}_trade_log_{timestamp}.csv")
+        df_trades = pd.DataFrame(rl_results["trade_log"])
+        df_trades.to_csv(trade_log_path, index=False)
+        print(f"Trade log saved to {trade_log_path}")
+    
+    # Save portfolio history as CSV
+    portfolio_path = os.path.join(output_dir, f"{rl_results['ticker']}_portfolio_history_{timestamp}.csv")
+    df_portfolio = pd.DataFrame({
+        "date": rl_results["dates"],
+        "price": rl_results["prices"],
+        "portfolio_value": rl_results["portfolio_values"],
+        "cash": rl_results["cash_history"],
+        "holdings": rl_results["holdings_history"],
+        "action": [["SELL", "HOLD", "BUY"][a] for a in rl_results["actions_taken"]]
+    })
+    df_portfolio.to_csv(portfolio_path, index=False)
+    print(f"Portfolio history saved to {portfolio_path}")
 
 
 def main():
@@ -344,25 +409,30 @@ def main():
         print(f"\nEvaluating {ticker}...")
         
         # Create environment
+        print(f"  Creating environment (LLM features: {args.use_llm_features})...")
         env = TradingEnvironment(
             ticker=ticker,
             start_date=args.start_date,
             end_date=args.end_date,
             initial_capital=args.initial_capital,
             config=config,
-            use_llm_features=False  # Faster evaluation
+            use_llm_features=args.use_llm_features
         )
         
         # Load agent
+        print(f"  Loading model from {args.model_path}...")
         state_dim = env.get_state_dim()
         action_dim = env.get_action_dim()
         agent = RLTradingAgent(state_dim, action_dim, config)
         agent.load(args.model_path)
+        print(f"  Model loaded successfully! State dim: {state_dim}, Action dim: {action_dim}")
         
         # Evaluate RL agent
-        rl_results = evaluate_agent(env, agent, ticker)
+        print(f"  Running RL agent evaluation...")
+        rl_results = evaluate_agent(env, agent, ticker, save_trades=args.save_trades)
         
         # Evaluate baselines
+        print(f"  Running baseline comparisons...")
         prices = rl_results["prices"]
         
         buy_hold = BaselineStrategy.buy_and_hold(prices)
@@ -375,7 +445,7 @@ def main():
         
         # Generate report
         output_dir = os.path.join(args.output_dir, ticker)
-        generate_report(rl_results, baselines, output_dir)
+        generate_report(rl_results, baselines, output_dir, save_trades=args.save_trades)
     
     print("\n" + "="*60)
     print("Evaluation complete!")
