@@ -1,724 +1,952 @@
 [
   {
     "episode": 1,
-    "timestamp": "2025-11-19T15:57:58.536955",
-    "total_return_pct": 56.374697875976565,
-    "episode_return_pct": 56.374697875976565,
-    "final_portfolio_value": 15637.469787597656,
-    "total_reward": 285.33869380853906,
-    "avg_reward": 8.646627085107244,
+    "timestamp": "2025-11-19T18:44:33.285120",
+    "total_return_pct": 0.1044921875,
+    "episode_return_pct": 0.1044921875,
+    "final_portfolio_value": 10010.44921875,
+    "total_reward": -188.4493101163168,
+    "avg_reward": -5.710585155039904,
     "actions": {
-      "SELL": 9,
-      "HOLD": 7,
-      "BUY": 17
+      "SELL": 10,
+      "HOLD": 11,
+      "BUY": 12
     },
     "epsilon": 0.990025,
-    "avg_loss": 31.06652545928955,
+    "avg_loss": 18.27437114715576,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 2,
-    "timestamp": "2025-11-19T15:59:35.015895",
-    "total_return_pct": 52.11199554443361,
-    "episode_return_pct": 52.11199554443361,
-    "final_portfolio_value": 15211.199554443361,
-    "total_reward": 225.2892910273766,
-    "avg_reward": 6.826948212950806,
+    "timestamp": "2025-11-19T18:46:14.965555",
+    "total_return_pct": 4.1974206542968755,
+    "episode_return_pct": 4.1974206542968755,
+    "final_portfolio_value": 10419.742065429688,
+    "total_reward": -20.84135493115832,
+    "avg_reward": -0.6315562100351007,
     "actions": {
-      "SELL": 7,
+      "SELL": 12,
       "HOLD": 13,
-      "BUY": 13
+      "BUY": 8
     },
     "epsilon": 0.8390886103705794,
-    "avg_loss": 28.587536551735617,
+    "avg_loss": 15.686148325602213,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 3,
-    "timestamp": "2025-11-19T16:01:14.457264",
-    "total_return_pct": 25.97100585937498,
-    "episode_return_pct": 25.97100585937498,
-    "final_portfolio_value": 12597.100585937498,
-    "total_reward": 11.91696861355232,
-    "avg_reward": 0.361120261016737,
+    "timestamp": "2025-11-19T18:47:53.458812",
+    "total_return_pct": 5.423770751953125,
+    "episode_return_pct": 5.423770751953125,
+    "final_portfolio_value": 10542.377075195312,
+    "total_reward": -75.30251125400642,
+    "avg_reward": -2.281894280424437,
     "actions": {
-      "SELL": 7,
-      "HOLD": 16,
-      "BUY": 10
+      "SELL": 11,
+      "HOLD": 10,
+      "BUY": 12
     },
     "epsilon": 0.7111635524897149,
-    "avg_loss": 32.37946319580078,
+    "avg_loss": 12.510092128406871,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 4,
-    "timestamp": "2025-11-19T16:02:42.297748",
-    "total_return_pct": 40.18138122558597,
-    "episode_return_pct": 40.18138122558597,
-    "final_portfolio_value": 14018.138122558597,
-    "total_reward": 178.09931681913227,
-    "avg_reward": 5.3969489945191595,
+    "timestamp": "2025-11-19T18:49:39.375069",
+    "total_return_pct": -1.536480712890625,
+    "episode_return_pct": -1.536480712890625,
+    "final_portfolio_value": 9846.351928710938,
+    "total_reward": -253.96133608125126,
+    "avg_reward": -7.69579806306822,
     "actions": {
-      "SELL": 11,
+      "SELL": 8,
       "HOLD": 5,
-      "BUY": 17
+      "BUY": 20
     },
     "epsilon": 0.6027415843082742,
-    "avg_loss": 31.114626450972125,
+    "avg_loss": 13.814176472750576,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 5,
-    "timestamp": "2025-11-19T16:04:13.324142",
-    "total_return_pct": 19.242796020507793,
-    "episode_return_pct": 19.242796020507793,
-    "final_portfolio_value": 11924.27960205078,
-    "total_reward": -71.27464922150247,
-    "avg_reward": -2.1598378551970447,
+    "timestamp": "2025-11-19T18:51:20.121255",
+    "total_return_pct": -7.202109985351562,
+    "episode_return_pct": -7.202109985351562,
+    "final_portfolio_value": 9279.789001464844,
+    "total_reward": -360.3150246535386,
+    "avg_reward": -10.918637110713291,
     "actions": {
-      "SELL": 7,
-      "HOLD": 6,
-      "BUY": 20
+      "SELL": 3,
+      "HOLD": 9,
+      "BUY": 21
     },
     "epsilon": 0.510849320360386,
-    "avg_loss": 31.657606587265477,
+    "avg_loss": 16.451596028877027,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 6,
-    "timestamp": "2025-11-19T16:05:44.248726",
-    "total_return_pct": 93.69970886230469,
-    "episode_return_pct": 93.69970886230469,
-    "final_portfolio_value": 19369.97088623047,
-    "total_reward": 474.6996078892982,
-    "avg_reward": 14.384836602706006,
+    "timestamp": "2025-11-19T18:53:03.999779",
+    "total_return_pct": -12.006493530273438,
+    "episode_return_pct": -12.006493530273438,
+    "final_portfolio_value": 8799.350646972656,
+    "total_reward": -450.6691628716555,
+    "avg_reward": -13.656641299141075,
     "actions": {
-      "SELL": 2,
-      "HOLD": 6,
-      "BUY": 25
+      "SELL": 6,
+      "HOLD": 8,
+      "BUY": 19
     },
     "epsilon": 0.43296668905325736,
-    "avg_loss": 30.065939874360055,
+    "avg_loss": 20.56534651553992,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 7,
-    "timestamp": "2025-11-19T16:07:21.200299",
-    "total_return_pct": 68.83258987426758,
-    "episode_return_pct": 68.83258987426758,
-    "final_portfolio_value": 16883.258987426758,
-    "total_reward": 318.3911305336494,
-    "avg_reward": 9.648216076777254,
+    "timestamp": "2025-11-19T18:54:54.058392",
+    "total_return_pct": -9.160736694335938,
+    "episode_return_pct": -9.160736694335938,
+    "final_portfolio_value": 9083.926330566406,
+    "total_reward": -411.50189931916356,
+    "avg_reward": -12.469754524823138,
+    "actions": {
+      "SELL": 5,
+      "HOLD": 12,
+      "BUY": 16
+    },
+    "epsilon": 0.3669578217261671,
+    "avg_loss": 18.820752028262977,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 8,
+    "timestamp": "2025-11-19T18:56:30.897076",
+    "total_return_pct": -6.798229980468749,
+    "episode_return_pct": -6.798229980468749,
+    "final_portfolio_value": 9320.177001953125,
+    "total_reward": -420.48909976448556,
+    "avg_reward": -12.742093932257138,
+    "actions": {
+      "SELL": 2,
+      "HOLD": 5,
+      "BUY": 26
+    },
+    "epsilon": 0.31101247816653554,
+    "avg_loss": 21.23028396837639,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 9,
+    "timestamp": "2025-11-19T18:58:04.853913",
+    "total_return_pct": -9.908003540039061,
+    "episode_return_pct": -9.908003540039061,
+    "final_portfolio_value": 9009.199645996094,
+    "total_reward": -428.3644156216929,
+    "avg_reward": -12.980739867324028,
+    "actions": {
+      "SELL": 5,
+      "HOLD": 8,
+      "BUY": 20
+    },
+    "epsilon": 0.26359640222486147,
+    "avg_loss": 21.01071297038685,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 10,
+    "timestamp": "2025-11-19T18:59:37.087707",
+    "total_return_pct": -3.746087646484375,
+    "episode_return_pct": -3.746087646484375,
+    "final_portfolio_value": 9625.391235351562,
+    "total_reward": -384.7307220101133,
+    "avg_reward": -11.65850672757919,
+    "actions": {
+      "SELL": 3,
+      "HOLD": 2,
+      "BUY": 28
+    },
+    "epsilon": 0.22340924607110255,
+    "avg_loss": 22.155687939036977,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 11,
+    "timestamp": "2025-11-19T19:01:17.490081",
+    "total_return_pct": -5.703905639648438,
+    "episode_return_pct": -5.703905639648438,
+    "final_portfolio_value": 9429.609436035156,
+    "total_reward": -392.03138605650724,
+    "avg_reward": -11.87973897140931,
+    "actions": {
+      "SELL": 2,
+      "HOLD": 2,
+      "BUY": 29
+    },
+    "epsilon": 0.18934890919900021,
+    "avg_loss": 24.852381648439348,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 12,
+    "timestamp": "2025-11-19T19:02:55.239989",
+    "total_return_pct": -0.9626983642578125,
+    "episode_return_pct": -0.9626983642578125,
+    "final_portfolio_value": 9903.730163574219,
+    "total_reward": -345.99246557422146,
+    "avg_reward": -10.484620168915802,
+    "actions": {
+      "SELL": 4,
+      "HOLD": 1,
+      "BUY": 28
+    },
+    "epsilon": 0.16048131420416054,
+    "avg_loss": 23.169932452115145,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 13,
+    "timestamp": "2025-11-19T19:04:41.439023",
+    "total_return_pct": -3.884082641601563,
+    "episode_return_pct": -3.884082641601563,
+    "final_portfolio_value": 9611.591735839844,
+    "total_reward": -324.4234628625511,
+    "avg_reward": -9.831014026137913,
+    "actions": {
+      "SELL": 8,
+      "HOLD": 2,
+      "BUY": 23
+    },
+    "epsilon": 0.13601479046086049,
+    "avg_loss": 24.754378029794402,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 14,
+    "timestamp": "2025-11-19T19:06:18.393221",
+    "total_return_pct": -11.102010498046875,
+    "episode_return_pct": -11.102010498046875,
+    "final_portfolio_value": 8889.798950195312,
+    "total_reward": -417.6123347808641,
+    "avg_reward": -12.65491923578376,
+    "actions": {
+      "SELL": 7,
+      "HOLD": 0,
+      "BUY": 26
+    },
+    "epsilon": 0.11527836319047392,
+    "avg_loss": 24.32148768685081,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 15,
+    "timestamp": "2025-11-19T19:07:57.022433",
+    "total_return_pct": -8.919515991210938,
+    "episode_return_pct": -8.919515991210938,
+    "final_portfolio_value": 9108.048400878906,
+    "total_reward": -429.14289206806427,
+    "avg_reward": -13.004330062668615,
+    "actions": {
+      "SELL": 5,
+      "HOLD": 4,
+      "BUY": 24
+    },
+    "epsilon": 0.09770335251664321,
+    "avg_loss": 22.99417530406605,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 16,
+    "timestamp": "2025-11-19T19:09:37.398954",
+    "total_return_pct": 1.9442791748046875,
+    "episode_return_pct": 1.9442791748046875,
+    "final_portfolio_value": 10194.427917480469,
+    "total_reward": -255.84095335572243,
+    "avg_reward": -7.752756162294619,
     "actions": {
       "SELL": 4,
       "HOLD": 5,
       "BUY": 24
     },
-    "epsilon": 0.3669578217261671,
-    "avg_loss": 32.20672717238917,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 8,
-    "timestamp": "2025-11-19T16:08:55.820845",
-    "total_return_pct": 91.24699722290039,
-    "episode_return_pct": 91.24699722290039,
-    "final_portfolio_value": 19124.69972229004,
-    "total_reward": 442.94295738051113,
-    "avg_reward": 13.422513860015489,
-    "actions": {
-      "SELL": 3,
-      "HOLD": 3,
-      "BUY": 27
-    },
-    "epsilon": 0.31101247816653554,
-    "avg_loss": 32.23705462253455,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 9,
-    "timestamp": "2025-11-19T16:10:27.679088",
-    "total_return_pct": 98.40869995117181,
-    "episode_return_pct": 98.40869995117181,
-    "final_portfolio_value": 19840.86999511718,
-    "total_reward": 548.0295711003877,
-    "avg_reward": 16.606956700011747,
-    "actions": {
-      "SELL": 4,
-      "HOLD": 3,
-      "BUY": 26
-    },
-    "epsilon": 0.26359640222486147,
-    "avg_loss": 33.45479814934008,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 10,
-    "timestamp": "2025-11-19T16:12:00.471997",
-    "total_return_pct": 97.21058715820313,
-    "episode_return_pct": 97.21058715820313,
-    "final_portfolio_value": 19721.058715820312,
-    "total_reward": 515.5992245322713,
-    "avg_reward": 15.62421892522034,
-    "actions": {
-      "SELL": 4,
-      "HOLD": 0,
-      "BUY": 29
-    },
-    "epsilon": 0.22340924607110255,
-    "avg_loss": 34.0983052109227,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 11,
-    "timestamp": "2025-11-19T16:13:43.228104",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.530348231239,
-    "avg_reward": 13.80394994640118,
-    "actions": {
-      "SELL": 1,
-      "HOLD": 3,
-      "BUY": 29
-    },
-    "epsilon": 0.18934890919900021,
-    "avg_loss": 33.20751138166948,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 12,
-    "timestamp": "2025-11-19T16:15:24.034411",
-    "total_return_pct": 85.6558995056152,
-    "episode_return_pct": 85.6558995056152,
-    "final_portfolio_value": 18565.58995056152,
-    "total_reward": 385.60290769820506,
-    "avg_reward": 11.684936596915305,
-    "actions": {
-      "SELL": 2,
-      "HOLD": 2,
-      "BUY": 29
-    },
-    "epsilon": 0.16048131420416054,
-    "avg_loss": 35.88913484053178,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 13,
-    "timestamp": "2025-11-19T16:17:03.081859",
-    "total_return_pct": 90.88629669189456,
-    "episode_return_pct": 90.88629669189456,
-    "final_portfolio_value": 19088.629669189457,
-    "total_reward": 442.85258927258974,
-    "avg_reward": 13.41977543250272,
-    "actions": {
-      "SELL": 3,
-      "HOLD": 0,
-      "BUY": 30
-    },
-    "epsilon": 0.13601479046086049,
-    "avg_loss": 35.794984528512664,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 14,
-    "timestamp": "2025-11-19T16:18:42.793719",
-    "total_return_pct": 98.32969833374024,
-    "episode_return_pct": 98.32969833374024,
-    "final_portfolio_value": 19832.969833374023,
-    "total_reward": 453.9586374166946,
-    "avg_reward": 13.756322345960443,
-    "actions": {
-      "SELL": 1,
-      "HOLD": 0,
-      "BUY": 32
-    },
-    "epsilon": 0.11527836319047392,
-    "avg_loss": 35.17810561440208,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 15,
-    "timestamp": "2025-11-19T16:20:21.210655",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
-    "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
-    },
-    "epsilon": 0.09770335251664321,
-    "avg_loss": 36.57603784040971,
-    "tickers": [
-      "ETERNAL.NS"
-    ]
-  },
-  {
-    "episode": 16,
-    "timestamp": "2025-11-19T16:21:59.042091",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.590348231239,
-    "avg_reward": 13.805768128219363,
-    "actions": {
-      "SELL": 0,
-      "HOLD": 1,
-      "BUY": 32
-    },
     "epsilon": 0.08280777787605056,
-    "avg_loss": 37.028990254257664,
+    "avg_loss": 21.84568350242846,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 17,
-    "timestamp": "2025-11-19T16:23:33.728706",
-    "total_return_pct": 111.84210815429685,
-    "episode_return_pct": 111.84210815429685,
-    "final_portfolio_value": 21184.210815429684,
-    "total_reward": 578.0514859941998,
-    "avg_reward": 17.516711696793934,
+    "timestamp": "2025-11-19T19:11:20.454876",
+    "total_return_pct": -3.572850341796875,
+    "episode_return_pct": -3.572850341796875,
+    "final_portfolio_value": 9642.714965820312,
+    "total_reward": -317.3033811720104,
+    "avg_reward": -9.615253974909406,
     "actions": {
-      "SELL": 1,
-      "HOLD": 0,
-      "BUY": 32
+      "SELL": 8,
+      "HOLD": 3,
+      "BUY": 22
     },
     "epsilon": 0.07018314008827135,
-    "avg_loss": 38.54849168026086,
+    "avg_loss": 21.908060333945535,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 18,
-    "timestamp": "2025-11-19T16:25:06.525279",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.570348231239,
-    "avg_reward": 13.805162067613303,
+    "timestamp": "2025-11-19T19:12:58.874551",
+    "total_return_pct": -3.6366137695312504,
+    "episode_return_pct": -3.6366137695312504,
+    "final_portfolio_value": 9636.338623046875,
+    "total_reward": -338.33755050496046,
+    "avg_reward": -10.252653045604863,
     "actions": {
-      "SELL": 0,
-      "HOLD": 2,
-      "BUY": 31
+      "SELL": 6,
+      "HOLD": 4,
+      "BUY": 23
     },
     "epsilon": 0.05948321859358224,
-    "avg_loss": 35.49991341793176,
+    "avg_loss": 23.632697105407715,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 19,
-    "timestamp": "2025-11-19T16:26:46.180537",
-    "total_return_pct": 61.207989501953165,
-    "episode_return_pct": 61.207989501953165,
-    "final_portfolio_value": 16120.798950195316,
-    "total_reward": 234.96916091910407,
-    "avg_reward": 7.120277603609214,
+    "timestamp": "2025-11-19T19:16:30.060716",
+    "total_return_pct": -2.8549749755859373,
+    "episode_return_pct": -2.8549749755859373,
+    "final_portfolio_value": 9714.502502441406,
+    "total_reward": -320.49940599942477,
+    "avg_reward": -9.71210321210378,
     "actions": {
-      "SELL": 3,
-      "HOLD": 0,
-      "BUY": 30
+      "SELL": 5,
+      "HOLD": 8,
+      "BUY": 20
     },
     "epsilon": 0.05041457663196215,
-    "avg_loss": 34.884148279825844,
+    "avg_loss": 24.89896635575728,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 20,
-    "timestamp": "2025-11-19T16:28:25.707036",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.590348231239,
-    "avg_reward": 13.805768128219363,
+    "timestamp": "2025-11-19T19:18:13.499552",
+    "total_return_pct": -5.352984619140625,
+    "episode_return_pct": -5.352984619140625,
+    "final_portfolio_value": 9464.701538085938,
+    "total_reward": -358.7826754917609,
+    "avg_reward": -10.872202287629118,
     "actions": {
-      "SELL": 0,
-      "HOLD": 1,
-      "BUY": 32
+      "SELL": 8,
+      "HOLD": 3,
+      "BUY": 22
     },
     "epsilon": 0.04272851397543923,
-    "avg_loss": 37.59182242191199,
+    "avg_loss": 21.63679330999201,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 21,
-    "timestamp": "2025-11-19T16:29:57.266724",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:19:53.724261",
+    "total_return_pct": -8.522011108398438,
+    "episode_return_pct": -8.522011108398438,
+    "final_portfolio_value": 9147.798889160156,
+    "total_reward": -431.33167674713366,
+    "avg_reward": -13.070656871125262,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 7,
+      "HOLD": 4,
+      "BUY": 22
     },
     "epsilon": 0.03621424652392737,
-    "avg_loss": 37.78515220410896,
+    "avg_loss": 25.252923878756437,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 22,
-    "timestamp": "2025-11-19T16:31:36.882707",
-    "total_return_pct": 105.8550959777832,
-    "episode_return_pct": 105.8550959777832,
-    "final_portfolio_value": 20585.50959777832,
-    "total_reward": 520.8713302897759,
-    "avg_reward": 15.783979705750784,
+    "timestamp": "2025-11-19T19:21:34.273597",
+    "total_return_pct": -6.670462036132813,
+    "episode_return_pct": -6.670462036132813,
+    "final_portfolio_value": 9332.953796386719,
+    "total_reward": -391.5446924482403,
+    "avg_reward": -11.864990680249706,
     "actions": {
-      "SELL": 1,
-      "HOLD": 0,
-      "BUY": 32
+      "SELL": 9,
+      "HOLD": 4,
+      "BUY": 20
     },
     "epsilon": 0.030693125720441184,
-    "avg_loss": 35.26681483875621,
+    "avg_loss": 25.356467015815504,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 23,
-    "timestamp": "2025-11-19T16:33:19.333603",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:23:19.539167",
+    "total_return_pct": -10.06347900390625,
+    "episode_return_pct": -10.06347900390625,
+    "final_portfolio_value": 8993.652099609375,
+    "total_reward": -431.0734182292259,
+    "avg_reward": -13.062830855431088,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 8,
+      "HOLD": 4,
+      "BUY": 21
     },
     "epsilon": 0.02601373925779093,
-    "avg_loss": 39.41871712424538,
+    "avg_loss": 22.901887633583762,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 24,
-    "timestamp": "2025-11-19T16:34:57.875696",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.590348231239,
-    "avg_reward": 13.805768128219363,
+    "timestamp": "2025-11-19T19:25:00.006716",
+    "total_return_pct": -7.168623046875,
+    "episode_return_pct": -7.168623046875,
+    "final_portfolio_value": 9283.1376953125,
+    "total_reward": -431.48085014517795,
+    "avg_reward": -13.075177277126604,
     "actions": {
-      "SELL": 0,
-      "HOLD": 1,
-      "BUY": 32
+      "SELL": 4,
+      "HOLD": 7,
+      "BUY": 22
     },
     "epsilon": 0.022047758717570132,
-    "avg_loss": 38.01230950789018,
+    "avg_loss": 24.796143734093867,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 25,
-    "timestamp": "2025-11-19T16:36:39.009833",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:26:43.709225",
+    "total_return_pct": -4.0443090820312495,
+    "episode_return_pct": -4.0443090820312495,
+    "final_portfolio_value": 9595.569091796875,
+    "total_reward": -383.34944534401535,
+    "avg_reward": -11.616649858909556,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 1,
+      "HOLD": 12,
+      "BUY": 20
     },
     "epsilon": 0.018686420266267767,
-    "avg_loss": 35.63460280678489,
+    "avg_loss": 22.97268162351666,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 26,
-    "timestamp": "2025-11-19T16:38:15.326285",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:28:23.287576",
+    "total_return_pct": -4.0443090820312495,
+    "episode_return_pct": -4.0443090820312495,
+    "final_portfolio_value": 9595.569091796875,
+    "total_reward": -383.3494453440154,
+    "avg_reward": -11.616649858909557,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 1,
+      "HOLD": 11,
+      "BUY": 21
     },
     "epsilon": 0.01583754189442009,
-    "avg_loss": 37.213017203591086,
+    "avg_loss": 22.282442497484613,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 27,
-    "timestamp": "2025-11-19T16:39:54.401463",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:30:05.603216",
+    "total_return_pct": -5.07091552734375,
+    "episode_return_pct": -5.07091552734375,
+    "final_portfolio_value": 9492.908447265625,
+    "total_reward": -383.69004142703557,
+    "avg_reward": -11.62697095233441,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 7,
+      "HOLD": 7,
+      "BUY": 19
     },
     "epsilon": 0.013422995398979608,
-    "avg_loss": 37.10109803170869,
+    "avg_loss": 22.365186228896633,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 28,
-    "timestamp": "2025-11-19T16:41:36.522043",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:31:52.733430",
+    "total_return_pct": 10.405933227539062,
+    "episode_return_pct": 10.405933227539062,
+    "final_portfolio_value": 11040.593322753906,
+    "total_reward": -78.40183291705549,
+    "avg_reward": -2.3758131186986513,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 11,
+      "HOLD": 4,
+      "BUY": 18
     },
     "epsilon": 0.01137656378004644,
-    "avg_loss": 36.083751273877695,
+    "avg_loss": 23.46991050604618,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 29,
-    "timestamp": "2025-11-19T16:43:24.292674",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:33:34.313944",
+    "total_return_pct": 8.44634033203125,
+    "episode_return_pct": 8.44634033203125,
+    "final_portfolio_value": 10844.634033203125,
+    "total_reward": -114.14635545020549,
+    "avg_reward": -3.458980468188045,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 11,
+      "HOLD": 3,
+      "BUY": 19
     },
     "epsilon": 0.01,
-    "avg_loss": 38.929393363721445,
+    "avg_loss": 22.98161405505556,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 30,
-    "timestamp": "2025-11-19T16:45:03.428786",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:35:16.928660",
+    "total_return_pct": 9.163668212890624,
+    "episode_return_pct": 9.163668212890624,
+    "final_portfolio_value": 10916.366821289062,
+    "total_reward": -47.53271896422829,
+    "avg_reward": -1.440385423158433,
     "actions": {
-      "SELL": 0,
+      "SELL": 16,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 17
     },
     "epsilon": 0.01,
-    "avg_loss": 38.39058592825225,
+    "avg_loss": 22.09399665485729,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 31,
-    "timestamp": "2025-11-19T16:46:41.979115",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:36:54.869474",
+    "total_return_pct": 9.163668212890624,
+    "episode_return_pct": 9.163668212890624,
+    "final_portfolio_value": 10916.366821289062,
+    "total_reward": -47.55271896422829,
+    "avg_reward": -1.4409914837644937,
     "actions": {
-      "SELL": 0,
+      "SELL": 17,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 16
     },
     "epsilon": 0.01,
-    "avg_loss": 37.17311171329383,
+    "avg_loss": 22.058308052294183,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 32,
-    "timestamp": "2025-11-19T16:48:17.921002",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:38:33.356666",
+    "total_return_pct": 8.024212646484374,
+    "episode_return_pct": 8.024212646484374,
+    "final_portfolio_value": 10802.421264648438,
+    "total_reward": -55.2541326622738,
+    "avg_reward": -1.6743676564325394,
     "actions": {
-      "SELL": 0,
+      "SELL": 17,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 16
     },
     "epsilon": 0.01,
-    "avg_loss": 39.256336732344195,
+    "avg_loss": 19.129136952486906,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 33,
-    "timestamp": "2025-11-19T16:49:55.862027",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:40:16.034283",
+    "total_return_pct": 14.525723876953126,
+    "episode_return_pct": 14.525723876953126,
+    "final_portfolio_value": 11452.572387695312,
+    "total_reward": 53.30559449836139,
+    "avg_reward": 1.6153210454048905,
     "actions": {
-      "SELL": 0,
+      "SELL": 18,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 15
     },
     "epsilon": 0.01,
-    "avg_loss": 36.46465810139974,
+    "avg_loss": 19.743539347793117,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 34,
-    "timestamp": "2025-11-19T16:51:29.228418",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:42:00.808637",
+    "total_return_pct": 7.52507080078125,
+    "episode_return_pct": 7.52507080078125,
+    "final_portfolio_value": 10752.507080078125,
+    "total_reward": -60.67244962654443,
+    "avg_reward": -1.8385590795922553,
     "actions": {
-      "SELL": 0,
+      "SELL": 17,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 16
     },
     "epsilon": 0.01,
-    "avg_loss": 32.97619120279948,
+    "avg_loss": 19.54285043658632,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 35,
-    "timestamp": "2025-11-19T16:53:04.539225",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:43:45.009067",
+    "total_return_pct": 13.93925537109375,
+    "episode_return_pct": 13.93925537109375,
+    "final_portfolio_value": 11393.925537109375,
+    "total_reward": 54.309769666579534,
+    "avg_reward": 1.6457505959569556,
     "actions": {
-      "SELL": 0,
+      "SELL": 19,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 14
     },
     "epsilon": 0.01,
-    "avg_loss": 38.153045538699985,
+    "avg_loss": 19.883493611306854,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 36,
-    "timestamp": "2025-11-19T16:54:47.477617",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:45:21.283341",
+    "total_return_pct": 17.212105712890626,
+    "episode_return_pct": 17.212105712890626,
+    "final_portfolio_value": 11721.210571289062,
+    "total_reward": 75.46853748127768,
+    "avg_reward": 2.286925378220536,
     "actions": {
-      "SELL": 0,
-      "HOLD": 0,
-      "BUY": 33
+      "SELL": 16,
+      "HOLD": 1,
+      "BUY": 16
     },
     "epsilon": 0.01,
-    "avg_loss": 38.010001211455375,
+    "avg_loss": 20.740709333708793,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 37,
-    "timestamp": "2025-11-19T16:56:21.362945",
-    "total_return_pct": 119.77480545043946,
-    "episode_return_pct": 119.77480545043946,
-    "final_portfolio_value": 21977.480545043945,
-    "total_reward": 653.6050125661377,
-    "avg_reward": 19.806212502004172,
+    "timestamp": "2025-11-19T19:47:01.803360",
+    "total_return_pct": 15.31756591796875,
+    "episode_return_pct": 15.31756591796875,
+    "final_portfolio_value": 11531.756591796875,
+    "total_reward": 61.0846127788146,
+    "avg_reward": 1.851048872085291,
     "actions": {
-      "SELL": 2,
+      "SELL": 18,
       "HOLD": 0,
-      "BUY": 31
+      "BUY": 15
     },
     "epsilon": 0.01,
-    "avg_loss": 33.51075571233576,
+    "avg_loss": 20.42737914576675,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
     ]
   },
   {
     "episode": 38,
-    "timestamp": "2025-11-19T16:57:55.540490",
-    "total_return_pct": 98.97919860839843,
-    "episode_return_pct": 98.97919860839843,
-    "final_portfolio_value": 19897.919860839844,
-    "total_reward": 455.61034823123896,
-    "avg_reward": 13.806374188825423,
+    "timestamp": "2025-11-19T19:48:36.545609",
+    "total_return_pct": 15.31756591796875,
+    "episode_return_pct": 15.31756591796875,
+    "final_portfolio_value": 11531.756591796875,
+    "total_reward": 61.1046127788146,
+    "avg_reward": 1.8516549326913514,
     "actions": {
-      "SELL": 0,
+      "SELL": 17,
       "HOLD": 0,
-      "BUY": 33
+      "BUY": 16
     },
     "epsilon": 0.01,
-    "avg_loss": 36.31399143103397,
+    "avg_loss": 18.643445795232598,
     "tickers": [
-      "ETERNAL.NS"
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 39,
+    "timestamp": "2025-11-19T19:50:17.316645",
+    "total_return_pct": 15.31756591796875,
+    "episode_return_pct": 15.31756591796875,
+    "final_portfolio_value": 11531.756591796875,
+    "total_reward": 61.0846127788146,
+    "avg_reward": 1.851048872085291,
+    "actions": {
+      "SELL": 18,
+      "HOLD": 0,
+      "BUY": 15
+    },
+    "epsilon": 0.01,
+    "avg_loss": 17.979640556104254,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 40,
+    "timestamp": "2025-11-19T19:51:56.116213",
+    "total_return_pct": 15.31756591796875,
+    "episode_return_pct": 15.31756591796875,
+    "final_portfolio_value": 11531.756591796875,
+    "total_reward": 61.0846127788146,
+    "avg_reward": 1.851048872085291,
+    "actions": {
+      "SELL": 18,
+      "HOLD": 0,
+      "BUY": 15
+    },
+    "epsilon": 0.01,
+    "avg_loss": 16.658090475833777,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 41,
+    "timestamp": "2025-11-19T19:53:36.058695",
+    "total_return_pct": 15.31756591796875,
+    "episode_return_pct": 15.31756591796875,
+    "final_portfolio_value": 11531.756591796875,
+    "total_reward": 61.0846127788146,
+    "avg_reward": 1.851048872085291,
+    "actions": {
+      "SELL": 18,
+      "HOLD": 0,
+      "BUY": 15
+    },
+    "epsilon": 0.01,
+    "avg_loss": 17.800813761624422,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 42,
+    "timestamp": "2025-11-19T19:55:17.524914",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 18.750474149530586,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 43,
+    "timestamp": "2025-11-19T19:57:00.538871",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 15.566853913393887,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 44,
+    "timestamp": "2025-11-19T19:58:34.739026",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 15.997965841582328,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 45,
+    "timestamp": "2025-11-19T20:00:12.084626",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 18.312125783978086,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 46,
+    "timestamp": "2025-11-19T20:01:57.567811",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 17.345487103317723,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 47,
+    "timestamp": "2025-11-19T20:03:38.070622",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 16.714056679696746,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 48,
+    "timestamp": "2025-11-19T20:05:16.233105",
+    "total_return_pct": 16.22877746582031,
+    "episode_return_pct": 16.22877746582031,
+    "final_portfolio_value": 11622.877746582031,
+    "total_reward": 84.92489587737745,
+    "avg_reward": 2.573481693253862,
+    "actions": {
+      "SELL": 21,
+      "HOLD": 0,
+      "BUY": 12
+    },
+    "epsilon": 0.01,
+    "avg_loss": 15.717011379473137,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 49,
+    "timestamp": "2025-11-19T20:06:54.866842",
+    "total_return_pct": 23.338665771484372,
+    "episode_return_pct": 23.338665771484372,
+    "final_portfolio_value": 12333.866577148438,
+    "total_reward": 183.3894529935877,
+    "avg_reward": 5.557256151320839,
+    "actions": {
+      "SELL": 20,
+      "HOLD": 0,
+      "BUY": 13
+    },
+    "epsilon": 0.01,
+    "avg_loss": 14.83719424045447,
+    "tickers": [
+      "HDFCBANK.NS"
+    ]
+  },
+  {
+    "episode": 50,
+    "timestamp": "2025-11-19T20:08:53.588072",
+    "total_return_pct": 18.458635864257815,
+    "episode_return_pct": 18.458635864257815,
+    "final_portfolio_value": 11845.863586425781,
+    "total_reward": 103.98727194927693,
+    "avg_reward": 3.1511294530083918,
+    "actions": {
+      "SELL": 19,
+      "HOLD": 0,
+      "BUY": 14
+    },
+    "epsilon": 0.01,
+    "avg_loss": 14.217537301959414,
+    "tickers": [
+      "HDFCBANK.NS"
     ]
   }
 ]
