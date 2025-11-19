@@ -1,10 +1,18 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import AIMessage
 import time
 import json
 
 
 def create_news_analyst(llm, toolkit):
     def news_analyst_node(state):
+        # Skip if report already exists (from cache)
+        if state.get("news_report"):
+            print(f"⏭️  Skipping News Analyst (using cached report)")
+            # Return an AIMessage with no tool_calls to satisfy conditional logic
+            skip_message = AIMessage(content="Using cached news report", tool_calls=[])
+            return {"messages": [skip_message]}
+        
         current_date = state["trade_date"]
         ticker = state["company_of_interest"]
 

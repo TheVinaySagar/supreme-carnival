@@ -59,8 +59,16 @@ class TradingAgentsGraph:
 
         # Initialize LLMs
         if self.config["llm_provider"].lower() == "openai" or self.config["llm_provider"] == "ollama" or self.config["llm_provider"] == "openrouter":
-            self.deep_thinking_llm = ChatOpenAI(model=self.config["deep_think_llm"], base_url=self.config["backend_url"])
-            self.quick_thinking_llm = ChatOpenAI(model=self.config["quick_think_llm"], base_url=self.config["backend_url"])
+            # Note: Web search is not enabled by default in gpt-4o-mini or standard models
+            # Only o1/o4 series have optional web search, which we avoid by using gpt-4o-mini
+            self.deep_thinking_llm = ChatOpenAI(
+                model=self.config["deep_think_llm"], 
+                base_url=self.config["backend_url"]
+            )
+            self.quick_thinking_llm = ChatOpenAI(
+                model=self.config["quick_think_llm"], 
+                base_url=self.config["backend_url"]
+            )
         elif self.config["llm_provider"].lower() == "anthropic":
             self.deep_thinking_llm = ChatAnthropic(model=self.config["deep_think_llm"], base_url=self.config["backend_url"])
             self.quick_thinking_llm = ChatAnthropic(model=self.config["quick_think_llm"], base_url=self.config["backend_url"])
@@ -154,8 +162,16 @@ class TradingAgentsGraph:
             ),
         }
 
-    def propagate(self, company_name, trade_date):
-        """Run the trading agents graph for a company on a specific date."""
+    def propagate(self, company_name, trade_date, cached_analyst_reports=None):
+        """Run the trading agents graph for a company on a specific date.
+        
+        Args:
+            company_name: Stock ticker
+            trade_date: Trading date
+            cached_analyst_reports: Optional dict with pre-generated analyst reports
+                                   (market_report, sentiment_report, news_report, fundamentals_report)
+                                   If provided, skips analyst generation and uses these for debate
+        """
 
         self.ticker = company_name
 
@@ -163,6 +179,15 @@ class TradingAgentsGraph:
         init_agent_state = self.propagator.create_initial_state(
             company_name, trade_date
         )
+        
+        # Inject cached analyst reports if provided
+        if cached_analyst_reports:
+            print(f"📋 Using cached analyst reports for debate (skipping analyst regeneration)")
+            init_agent_state["market_report"] = cached_analyst_reports.get("market_report", "")
+            init_agent_state["sentiment_report"] = cached_analyst_reports.get("sentiment_report", "")
+            init_agent_state["news_report"] = cached_analyst_reports.get("news_report", "")
+            init_agent_state["fundamentals_report"] = cached_analyst_reports.get("fundamentals_report", "")
+        
         args = self.propagator.get_graph_args()
 
         if self.debug:

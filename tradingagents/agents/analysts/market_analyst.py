@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import AIMessage
 import time
 import json
 
@@ -6,6 +7,13 @@ import json
 def create_market_analyst(llm, toolkit):
 
     def market_analyst_node(state):
+        # Skip if report already exists (from cache)
+        if state.get("market_report"):
+            print(f"⏭️  Skipping Market Analyst (using cached report)")
+            # Return an AIMessage with no tool_calls to satisfy conditional logic
+            skip_message = AIMessage(content="Using cached market report", tool_calls=[])
+            return {"messages": [skip_message]}
+        
         current_date = state["trade_date"]
         ticker = state["company_of_interest"]
         company_name = state["company_of_interest"]
@@ -60,7 +68,8 @@ Volume-Based Indicators:
                     " will help where you left off. Execute what you can to make progress."
                     " If you or any other assistant has the FINAL TRANSACTION PROPOSAL: **BUY/HOLD/SELL** or deliverable,"
                     " prefix your response with FINAL TRANSACTION PROPOSAL: **BUY/HOLD/SELL** so the team knows to stop."
-                    " You have access to the following tools: {tool_names}.\n{system_message}"
+                    " IMPORTANT: ONLY use the provided tools: {tool_names}. Do NOT search the web or use external sources."
+                    " All data must come from the available tools.\n{system_message}"
                     "For your reference, the current date is {current_date}. The company we want to look at is {ticker}",
                 ),
                 MessagesPlaceholder(variable_name="messages"),
